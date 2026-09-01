@@ -96,9 +96,9 @@
         }
 
 
-        /* ================================
+        /* ==========================================
            BATTLEFIELD
-           ================================ */
+           ========================================== */
 
         .battlefield-header,
         .battlefield-row {
@@ -145,12 +145,6 @@
         }
 
 
-        .battlefield-row:last-child {
-
-            border-bottom: none;
-        }
-
-
         .card-name {
 
             font-weight: bold;
@@ -190,9 +184,54 @@
         }
 
 
-        /* ================================
+        /* ==========================================
+           SPECIAL EFFECTS
+           ========================================== */
+
+        .effect-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid #374151;
+        }
+
+
+        .toggle {
+
+            width: 55px;
+
+            height: 30px;
+
+            border-radius: 20px;
+
+            border: none;
+
+            background: #374151;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 12px;
+        }
+
+
+        .toggle.active {
+
+            background: #166534;
+        }
+
+
+        /* ==========================================
            DEATH EVENT
-           ================================ */
+           ========================================== */
 
         .death-search {
 
@@ -250,12 +289,6 @@
         }
 
 
-        .death-row:last-child {
-
-            border-bottom: none;
-        }
-
-
         .death-name {
 
             font-size: 14px;
@@ -290,12 +323,6 @@
         }
 
 
-        .small-button:active {
-
-            transform: scale(0.95);
-        }
-
-
         .minus {
 
             background: #374151;
@@ -308,9 +335,9 @@
         }
 
 
-        /* ================================
+        /* ==========================================
            RESULTS
-           ================================ */
+           ========================================== */
 
         .result-label {
 
@@ -357,14 +384,12 @@
             font-weight: bold;
 
             padding-top: 10px;
-
-            border-bottom: none;
         }
 
 
-        /* ================================
-           TOKEN RESULT
-           ================================ */
+        /* ==========================================
+           TOKEN OUTPUT
+           ========================================== */
 
         .token-result {
 
@@ -375,6 +400,83 @@
             font-weight: bold;
 
             margin-top: 5px;
+        }
+
+
+        .token-output {
+
+            margin-top: 15px;
+
+            border-top:
+                1px solid #374151;
+
+            padding-top: 10px;
+        }
+
+
+        .token-line {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 6px 0;
+        }
+
+
+        /* ==========================================
+           APPLY BUTTON
+           ========================================== */
+
+        .apply-button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-top: 18px;
+
+            background: #166534;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .apply-button:active {
+
+            transform: scale(0.98);
+        }
+
+
+        .clear-button {
+
+            width: 100%;
+
+            padding: 11px;
+
+            margin-top: 8px;
+
+            background: #374151;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            cursor: pointer;
         }
 
 
@@ -390,54 +492,9 @@
         }
 
 
-        /* ================================
-           SPECIAL EFFECTS
-           ================================ */
-
-        .effect-row {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            padding: 10px 0;
-
-            border-bottom:
-                1px solid #374151;
-        }
-
-
-        .toggle {
-
-            width: 55px;
-
-            height: 30px;
-
-            border-radius: 20px;
-
-            border: none;
-
-            background: #374151;
-
-            cursor: pointer;
-
-            color: white;
-
-            font-size: 12px;
-        }
-
-
-        .toggle.active {
-
-            background: #166534;
-        }
-
-
-        /* ================================
+        /* ==========================================
            MOBILE
-           ================================ */
+           ========================================== */
 
         @media (max-width: 500px) {
 
@@ -469,12 +526,6 @@
                 width: 48px;
             }
 
-
-            .death-name {
-
-                font-size: 13px;
-            }
-
         }
 
     </style>
@@ -499,9 +550,9 @@
 
 
 
-    <!-- =====================================
+    <!-- ==========================================
          BATTLEFIELD
-         ===================================== -->
+         ========================================== -->
 
     <div class="card">
 
@@ -514,8 +565,8 @@
         <div class="description">
 
             Enter the permanents currently on your
-            battlefield. Put Ratadrabik-created copies
-            in the Token column.
+            battlefield. Ratadrabik-created copies
+            belong in the Token column.
 
         </div>
 
@@ -837,14 +888,13 @@
         </div>
 
 
-
     </div>
 
 
 
-    <!-- =====================================
+    <!-- ==========================================
          SPECIAL EFFECTS
-         ===================================== -->
+         ========================================== -->
 
     <div class="card">
 
@@ -854,19 +904,12 @@
         </h2>
 
 
-        <div class="description">
-
-            Noncreature permanents that affect the
-            battlefield are tracked separately.
-
-        </div>
-
-
         <div class="effect-row">
 
             <span>
                 Heartless Summoning
             </span>
+
 
             <button
                 id="heartless-button"
@@ -882,8 +925,9 @@
         <div class="effect-row">
 
             <span>
-                Roaming Throne — chosen type
+                Roaming Throne Type
             </span>
+
 
             <select
                 id="throne-type"
@@ -914,9 +958,9 @@
 
 
 
-    <!-- =====================================
-         DEATH EVENT
-         ===================================== -->
+    <!-- ==========================================
+         WHAT DIED
+         ========================================== -->
 
     <div class="card">
 
@@ -929,9 +973,7 @@
         <div class="description">
 
             Select the legendary creatures that died
-            during this event. Use + for each creature
-            that died. Multiple creatures can be selected
-            for a simultaneous death event.
+            during this event.
 
         </div>
 
@@ -956,9 +998,9 @@
 
 
 
-    <!-- =====================================
-         TRIGGER RESULTS
-         ===================================== -->
+    <!-- ==========================================
+         RESULTS
+         ========================================== -->
 
     <div class="card">
 
@@ -972,7 +1014,7 @@
             id="triggerResult"
             class="result"
         >
-            1
+            0
         </div>
 
 
@@ -984,7 +1026,7 @@
             </span>
 
             <span id="baseTriggers">
-                1
+                0
             </span>
 
         </div>
@@ -1070,7 +1112,7 @@
             </span>
 
             <span id="totalTriggers">
-                1
+                0
             </span>
 
         </div>
@@ -1080,15 +1122,15 @@
 
 
 
-    <!-- =====================================
-         TOKEN RESULTS
-         ===================================== -->
+    <!-- ==========================================
+         TOKEN OUTPUT
+         ========================================== -->
 
     <div class="card">
 
 
         <div class="result-label">
-            RATADRABIK TOKEN CREATIONS
+            TOKEN OUTPUT
         </div>
 
 
@@ -1096,17 +1138,38 @@
             id="tokenResult"
             class="token-result"
         >
-            1
+            0
         </div>
+
+
+        <div
+            id="tokenOutput"
+            class="token-output"
+        >
+        </div>
+
+
+        <button
+            class="apply-button"
+            onclick="applyEvent()"
+        >
+            APPLY EVENT TO BATTLEFIELD
+        </button>
+
+
+        <button
+            class="clear-button"
+            onclick="clearDeathEvent()"
+        >
+            CLEAR DEATH EVENT
+        </button>
 
 
         <div class="info">
 
-            Each Ratadrabik trigger creates one
-            Zombie token copy of the legendary creature
-            that died. Mondrak and Ojer Taq replacement
-            effects will be incorporated into this result
-            in a later version.
+            Applying the event removes the creatures that
+            died from the battlefield and adds the
+            Ratadrabik-created token copies.
 
         </div>
 
@@ -1121,9 +1184,9 @@
 <script>
 
 
-/* =====================================================
-   DECK DATA
-   ===================================================== */
+/* ==================================================
+   LEGENDARY CREATURES IN YOUR DECK
+   ================================================== */
 
 const legendaryCreatures = [
 
@@ -1189,9 +1252,9 @@ const legendaryCreatures = [
 
 
 
-/* =====================================================
+/* ==================================================
    DEATH COUNTS
-   ===================================================== */
+   ================================================== */
 
 const deathCounts = {};
 
@@ -1204,9 +1267,9 @@ legendaryCreatures.forEach(
 
 
 
-/* =====================================================
+/* ==================================================
    HEARTLESS SUMMONING
-   ===================================================== */
+   ================================================== */
 
 let heartlessSummoning = false;
 
@@ -1225,28 +1288,31 @@ function toggleHeartless() {
 
     if (heartlessSummoning) {
 
-        button.textContent = "ON";
+        button.textContent =
+            "ON";
 
-        button.classList.add("active");
+        button.classList.add(
+            "active"
+        );
 
     } else {
 
-        button.textContent = "OFF";
+        button.textContent =
+            "OFF";
 
-        button.classList.remove("active");
+        button.classList.remove(
+            "active"
+        );
 
     }
-
-
-    calculate();
 
 }
 
 
 
-/* =====================================================
-   RENDER DEATH LIST
-   ===================================================== */
+/* ==================================================
+   DEATH LIST
+   ================================================== */
 
 function renderDeathList() {
 
@@ -1307,10 +1373,11 @@ function renderDeathList() {
 
 
             minus.onclick =
-                () => changeDeath(
-                    card,
-                    -1
-                );
+                () =>
+                    changeDeath(
+                        card,
+                        -1
+                    );
 
 
 
@@ -1325,9 +1392,7 @@ function renderDeathList() {
 
 
             count.id =
-                getDeathElementId(
-                    card
-                );
+                getDeathId(card);
 
 
             count.textContent =
@@ -1350,10 +1415,11 @@ function renderDeathList() {
 
 
             plus.onclick =
-                () => changeDeath(
-                    card,
-                    1
-                );
+                () =>
+                    changeDeath(
+                        card,
+                        1
+                    );
 
 
 
@@ -1375,28 +1441,27 @@ function renderDeathList() {
 
 
 
-/* =====================================================
+/* ==================================================
    DEATH ELEMENT ID
-   ===================================================== */
+   ================================================== */
 
-function getDeathElementId(card) {
+function getDeathId(card) {
 
     return (
         "death-" +
-        card
-            .replace(
-                /[^a-zA-Z0-9]/g,
-                "-"
-            )
+        card.replace(
+            /[^a-zA-Z0-9]/g,
+            "-"
+        )
     );
 
 }
 
 
 
-/* =====================================================
-   CHANGE DEATH COUNT
-   ===================================================== */
+/* ==================================================
+   CHANGE DEATH
+   ================================================== */
 
 function changeDeath(
     card,
@@ -1416,7 +1481,7 @@ function changeDeath(
 
 
     document.getElementById(
-        getDeathElementId(card)
+        getDeathId(card)
     ).textContent =
         deathCounts[card];
 
@@ -1427,9 +1492,9 @@ function changeDeath(
 
 
 
-/* =====================================================
-   SEARCH DEATH LIST
-   ===================================================== */
+/* ==================================================
+   SEARCH
+   ================================================== */
 
 function filterDeaths() {
 
@@ -1440,78 +1505,70 @@ function filterDeaths() {
         .toLowerCase();
 
 
-    const rows =
-        document.querySelectorAll(
+    document
+        .querySelectorAll(
             ".death-row"
-        );
-
-
-    rows.forEach(
-        row => {
-
-            const name =
-                row.dataset.name;
-
-
-            if (
-                name.includes(search)
-            ) {
+        )
+        .forEach(
+            row => {
 
                 row.style.display =
-                    "grid";
-
-            } else {
-
-                row.style.display =
-                    "none";
+                    row.dataset.name
+                        .includes(search)
+                    ? "grid"
+                    : "none";
 
             }
-
-        }
-    );
+        );
 
 }
 
 
 
-/* =====================================================
-   READ NUMBER
-   ===================================================== */
+/* ==================================================
+   NUMBER INPUT
+   ================================================== */
 
 function getValue(id) {
 
     return Number(
-        document.getElementById(id).value
+        document.getElementById(
+            id
+        ).value
     ) || 0;
 
 }
 
 
 
-/* =====================================================
-   TOTAL BATTLEFIELD COPIES
-   ===================================================== */
+/* ==================================================
+   BATTLEFIELD COPIES
+   ================================================== */
 
 function totalCopies(card) {
 
     const original =
         getValue(
-            card + "-original"
+            card +
+            "-original"
         );
 
 
     const token =
         getValue(
-            card + "-token"
+            card +
+            "-token"
         );
 
 
     const total =
-        original + token;
+        original +
+        token;
 
 
     document.getElementById(
-        card + "-total"
+        card +
+        "-total"
     ).textContent =
         total;
 
@@ -1522,9 +1579,9 @@ function totalCopies(card) {
 
 
 
-/* =====================================================
+/* ==================================================
    TOTAL DEATHS
-   ===================================================== */
+   ================================================== */
 
 function totalDeaths() {
 
@@ -1534,7 +1591,8 @@ function totalDeaths() {
         (
             total,
             count
-        ) => total + count,
+        ) =>
+            total + count,
         0
     );
 
@@ -1542,16 +1600,85 @@ function totalDeaths() {
 
 
 
-/* =====================================================
+/* ==================================================
+   TOKEN OUTPUT
+   ================================================== */
+
+function updateTokenOutput(
+    totalTriggers
+) {
+
+    const output =
+        document.getElementById(
+            "tokenOutput"
+        );
+
+
+    output.innerHTML = "";
+
+
+    legendaryCreatures.forEach(
+        card => {
+
+            const deaths =
+                deathCounts[card];
+
+
+            if (
+                deaths <= 0
+            ) {
+                return;
+            }
+
+
+            const tokens =
+                deaths *
+                totalTriggers /
+                totalDeaths();
+
+
+            const line =
+                document.createElement(
+                    "div"
+                );
+
+
+            line.className =
+                "token-line";
+
+
+            line.innerHTML =
+
+                `<span>
+                    ${card} Zombie
+                </span>
+
+                <strong>
+                    ${tokens}
+                </strong>`;
+
+
+            output.appendChild(
+                line
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
    MAIN CALCULATION
-   ===================================================== */
+   ================================================== */
 
 function calculate() {
 
 
-    /* -----------------------------------------------
+    /* ----------------------------------------------
        BATTLEFIELD
-       ----------------------------------------------- */
+       ---------------------------------------------- */
 
     const ratadrabik =
         totalCopies(
@@ -1589,31 +1716,29 @@ function calculate() {
         );
 
 
-    const mondrak =
-        totalCopies(
-            "mondrak"
-        );
+    totalCopies(
+        "mondrak"
+    );
 
 
-    const ojer =
-        totalCopies(
-            "ojer"
-        );
+    totalCopies(
+        "ojer"
+    );
 
 
 
-    /* -----------------------------------------------
+    /* ----------------------------------------------
        DEATH EVENT
-       ----------------------------------------------- */
+       ---------------------------------------------- */
 
     const deaths =
         totalDeaths();
 
 
 
-    /* -----------------------------------------------
-       BASE RATADRABIK TRIGGERS
-       ----------------------------------------------- */
+    /* ----------------------------------------------
+       BASE TRIGGERS
+       ---------------------------------------------- */
 
     let baseTriggers = 0;
 
@@ -1629,36 +1754,29 @@ function calculate() {
 
 
 
-    /* -----------------------------------------------
+    /* ----------------------------------------------
        ADDITIONAL TRIGGERS
-
-       IMPORTANT:
-
-       These effects add ONE additional trigger
-       per applicable permanent.
-
-       They do NOT multiply each other.
-       ----------------------------------------------- */
+       ---------------------------------------------- */
 
     const teysaBonus =
-        deaths * teysa;
+        deaths *
+        teysa;
 
 
     const drivnodBonus =
-        deaths * drivnod;
+        deaths *
+        drivnod;
 
 
     const gandalfBonus =
-        deaths * gandalf;
+        deaths *
+        gandalf;
 
 
 
-    /* -----------------------------------------------
+    /* ----------------------------------------------
        ROAMING THRONE
-
-       For this version, Throne contributes when
-       Zombie is selected.
-       ----------------------------------------------- */
+       ---------------------------------------------- */
 
     const throneType =
         document.getElementById(
@@ -1674,28 +1792,26 @@ function calculate() {
     ) {
 
         throneBonus =
-            deaths * throne;
+            deaths *
+            throne;
 
     }
 
 
 
-    /* -----------------------------------------------
+    /* ----------------------------------------------
        DELNEY
 
-       Delney's power condition will be implemented
-       after we add Ratadrabik's actual power tracking.
-
-       For now this remains zero.
-       ----------------------------------------------- */
+       Temporary placeholder.
+       ---------------------------------------------- */
 
     const delneyBonus = 0;
 
 
 
-    /* -----------------------------------------------
-       TOTAL TRIGGERS
-       ----------------------------------------------- */
+    /* ----------------------------------------------
+       TOTAL
+       ---------------------------------------------- */
 
     const totalTriggers =
 
@@ -1713,9 +1829,9 @@ function calculate() {
 
 
 
-    /* -----------------------------------------------
-       DISPLAY RESULTS
-       ----------------------------------------------- */
+    /* ----------------------------------------------
+       DISPLAY
+       ---------------------------------------------- */
 
     document.getElementById(
         "baseTriggers"
@@ -1765,25 +1881,310 @@ function calculate() {
         totalTriggers;
 
 
-
-    /* -----------------------------------------------
-       TOKEN CREATIONS
-
-       Replacement effects will be added later.
-       ----------------------------------------------- */
-
     document.getElementById(
         "tokenResult"
     ).textContent =
         totalTriggers;
 
+
+    updateTokenOutput(
+        totalTriggers
+    );
+
 }
 
 
 
-/* =====================================================
+/* ==================================================
+   APPLY EVENT
+   ================================================== */
+
+function applyEvent() {
+
+
+    const deaths =
+        totalDeaths();
+
+
+    if (
+        deaths === 0
+    ) {
+
+        alert(
+            "No creatures have been selected as dying."
+        );
+
+        return;
+
+    }
+
+
+    const ratadrabik =
+        totalCopies(
+            "ratadrabik"
+        );
+
+
+    if (
+        ratadrabik === 0
+    ) {
+
+        alert(
+            "Ratadrabik is not on the battlefield."
+        );
+
+        return;
+
+    }
+
+
+    const totalTriggers =
+        Number(
+            document.getElementById(
+                "totalTriggers"
+            ).textContent
+        );
+
+
+    /*
+     * Remove the original creatures
+     * that died.
+     */
+
+    Object.keys(
+        deathCounts
+    ).forEach(
+        card => {
+
+            const died =
+                deathCounts[card];
+
+
+            if (
+                died <= 0
+            ) {
+                return;
+            }
+
+
+            removeOriginalFromBattlefield(
+                card,
+                died
+            );
+
+        }
+    );
+
+
+    /*
+     * Add Ratadrabik token copies.
+     */
+
+    Object.keys(
+        deathCounts
+    ).forEach(
+        card => {
+
+            const died =
+                deathCounts[card];
+
+
+            if (
+                died <= 0
+            ) {
+                return;
+            }
+
+
+            const tokenCopies =
+                died *
+                totalTriggers /
+                deaths;
+
+
+            addTokenCopies(
+                card,
+                tokenCopies
+            );
+
+        }
+    );
+
+
+    /*
+     * Clear the death event.
+     */
+
+    clearDeathEvent();
+
+
+    calculate();
+
+}
+
+
+
+/* ==================================================
+   REMOVE ORIGINAL CREATURE
+   ================================================== */
+
+function removeOriginalFromBattlefield(
+    card,
+    amount
+) {
+
+
+    const map = {
+
+        "Teysa Karlov":
+            "teysa",
+
+        "Drivnod, Carnage Dominus":
+            "drivnod",
+
+        "Gandalf the White":
+            "gandalf",
+
+        "Roaming Throne":
+            "throne",
+
+        "Delney, Streetwise Lookout":
+            "delney",
+
+        "Mondrak, Glory Dominus":
+            "mondrak",
+
+        "Ojer Taq, Deepest Foundation":
+            "ojer"
+
+    };
+
+
+    const field =
+        map[card];
+
+
+    if (
+        !field
+    ) {
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            field +
+            "-original"
+        );
+
+
+    input.value =
+        Math.max(
+            0,
+            getValue(
+                field +
+                "-original"
+            ) -
+            amount
+        );
+
+}
+
+
+
+/* ==================================================
+   ADD TOKEN COPIES
+   ================================================== */
+
+function addTokenCopies(
+    card,
+    amount
+) {
+
+
+    const map = {
+
+        "Teysa Karlov":
+            "teysa",
+
+        "Drivnod, Carnage Dominus":
+            "drivnod",
+
+        "Gandalf the White":
+            "gandalf",
+
+        "Roaming Throne":
+            "throne",
+
+        "Delney, Streetwise Lookout":
+            "delney",
+
+        "Mondrak, Glory Dominus":
+            "mondrak",
+
+        "Ojer Taq, Deepest Foundation":
+            "ojer"
+
+    };
+
+
+    const field =
+        map[card];
+
+
+    if (
+        !field
+    ) {
+        return;
+    }
+
+
+    const input =
+        document.getElementById(
+            field +
+            "-token"
+        );
+
+
+    input.value =
+        getValue(
+            field +
+            "-token"
+        ) +
+        amount;
+
+}
+
+
+
+/* ==================================================
+   CLEAR DEATH EVENT
+   ================================================== */
+
+function clearDeathEvent() {
+
+
+    legendaryCreatures.forEach(
+        card => {
+
+            deathCounts[card] = 0;
+
+        }
+    );
+
+
+    renderDeathList();
+
+
+    calculate();
+
+}
+
+
+
+/* ==================================================
    INITIALIZE
-   ===================================================== */
+   ================================================== */
 
 renderDeathList();
 

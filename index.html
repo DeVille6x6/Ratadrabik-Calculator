@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Ratadrabik Calculator</title>
+
 
     <style>
 
@@ -12,55 +19,86 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             margin: 0;
+
             padding: 12px;
 
             background: #111827;
+
             color: #f9fafb;
 
-            font-family: Arial, sans-serif;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
         }
 
+
         .container {
+
             max-width: 700px;
+
             margin: auto;
         }
 
+
         h1 {
+
             text-align: center;
-            margin-bottom: 4px;
+
+            margin:
+                8px 0 4px;
         }
 
+
         .subtitle {
+
             text-align: center;
+
             color: #9ca3af;
+
             margin-bottom: 20px;
         }
 
+
         .card {
+
             background: #1f2937;
+
             border-radius: 12px;
 
             padding: 18px;
+
             margin-bottom: 18px;
         }
 
+
         h2 {
+
             margin-top: 0;
+
             font-size: 20px;
         }
 
+
         .description {
+
             color: #9ca3af;
+
             font-size: 14px;
-            margin-bottom: 15px;
+
             line-height: 1.5;
+
+            margin-bottom: 15px;
         }
 
-        /* =========================
+
+        /* ================================
            BATTLEFIELD
-           ========================= */
+           ================================ */
 
         .battlefield-header,
         .battlefield-row {
@@ -69,46 +107,66 @@
 
             grid-template-columns:
                 1fr
-                70px
-                70px
-                70px;
+                65px
+                65px
+                65px;
 
             gap: 6px;
 
             align-items: center;
         }
 
+
         .battlefield-header {
+
             color: #9ca3af;
+
             font-size: 11px;
+
             text-align: center;
 
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
+
         .battlefield-header div:first-child {
+
             text-align: left;
         }
 
+
         .battlefield-row {
 
-            padding: 9px 0;
+            padding:
+                9px 0;
 
             border-bottom:
                 1px solid #374151;
         }
 
-        .card-name {
-            font-weight: bold;
+
+        .battlefield-row:last-child {
+
+            border-bottom: none;
         }
+
+
+        .card-name {
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
 
         .number-input {
 
-            width: 60px;
+            width: 58px;
 
             padding: 7px;
 
             background: #111827;
+
             color: white;
 
             border:
@@ -121,17 +179,20 @@
             font-size: 16px;
         }
 
+
         .total-number {
 
             text-align: center;
 
             font-size: 18px;
+
+            font-weight: bold;
         }
 
 
-        /* =========================
+        /* ================================
            DEATH EVENT
-           ========================= */
+           ================================ */
 
         .death-search {
 
@@ -142,6 +203,7 @@
             margin-bottom: 12px;
 
             background: #111827;
+
             color: white;
 
             border:
@@ -151,6 +213,7 @@
 
             font-size: 16px;
         }
+
 
         .death-list {
 
@@ -164,41 +227,50 @@
             border-radius: 8px;
         }
 
+
         .death-row {
 
             display: grid;
 
             grid-template-columns:
                 1fr
+                42px
                 45px
-                45px
-                45px;
+                42px;
 
             gap: 5px;
 
             align-items: center;
 
-            padding: 8px 10px;
+            padding:
+                7px 9px;
 
             border-bottom:
                 1px solid #374151;
         }
 
+
         .death-row:last-child {
+
             border-bottom: none;
         }
 
+
         .death-name {
+
             font-size: 14px;
         }
+
 
         .death-count {
 
             text-align: center;
 
             font-size: 18px;
+
             font-weight: bold;
         }
+
 
         .small-button {
 
@@ -207,6 +279,7 @@
             border-radius: 7px;
 
             width: 38px;
+
             height: 36px;
 
             font-size: 20px;
@@ -216,18 +289,28 @@
             color: white;
         }
 
+
+        .small-button:active {
+
+            transform: scale(0.95);
+        }
+
+
         .minus {
+
             background: #374151;
         }
 
+
         .plus {
+
             background: #4b5563;
         }
 
 
-        /* =========================
+        /* ================================
            RESULTS
-           ========================= */
+           ================================ */
 
         .result-label {
 
@@ -236,18 +319,23 @@
             color: #9ca3af;
 
             font-size: 13px;
+
+            letter-spacing: 0.5px;
         }
+
 
         .result {
 
             text-align: center;
 
-            font-size: 52px;
+            font-size: 54px;
 
             font-weight: bold;
 
-            margin: 4px 0 15px;
+            margin:
+                4px 0 15px;
         }
+
 
         .breakdown-row {
 
@@ -255,24 +343,28 @@
 
             justify-content: space-between;
 
-            padding: 6px 0;
+            padding: 7px 0;
 
             border-bottom:
                 1px solid #374151;
         }
 
+
         .breakdown-total {
 
             font-size: 20px;
+
             font-weight: bold;
 
             padding-top: 10px;
+
+            border-bottom: none;
         }
 
 
-        /* =========================
-           TOKEN OUTPUT
-           ========================= */
+        /* ================================
+           TOKEN RESULT
+           ================================ */
 
         .token-result {
 
@@ -284,6 +376,7 @@
 
             margin-top: 5px;
         }
+
 
         .info {
 
@@ -297,32 +390,89 @@
         }
 
 
-        /* =========================
+        /* ================================
+           SPECIAL EFFECTS
+           ================================ */
+
+        .effect-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 10px 0;
+
+            border-bottom:
+                1px solid #374151;
+        }
+
+
+        .toggle {
+
+            width: 55px;
+
+            height: 30px;
+
+            border-radius: 20px;
+
+            border: none;
+
+            background: #374151;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 12px;
+        }
+
+
+        .toggle.active {
+
+            background: #166534;
+        }
+
+
+        /* ================================
            MOBILE
-           ========================= */
+           ================================ */
 
         @media (max-width: 500px) {
 
             body {
+
                 padding: 8px;
             }
 
+
             .card {
+
                 padding: 14px;
             }
+
 
             .battlefield-header,
             .battlefield-row {
 
                 grid-template-columns:
                     1fr
-                    55px
-                    55px
-                    55px;
+                    52px
+                    52px
+                    52px;
             }
 
+
             .number-input {
+
                 width: 48px;
+            }
+
+
+            .death-name {
+
+                font-size: 13px;
             }
 
         }
@@ -334,6 +484,7 @@
 
 <body>
 
+
 <div class="container">
 
 
@@ -341,9 +492,11 @@
         Ratadrabik Calculator
     </h1>
 
+
     <div class="subtitle">
         Ratadrabik of Urborg
     </div>
+
 
 
     <!-- =====================================
@@ -352,15 +505,17 @@
 
     <div class="card">
 
+
         <h2>
             Battlefield
         </h2>
 
+
         <div class="description">
 
-            Enter the permanents currently on your battlefield.
-            Token copies created by Ratadrabik go in the
-            <b>Token</b> column.
+            Enter the permanents currently on your
+            battlefield. Put Ratadrabik-created copies
+            in the Token column.
 
         </div>
 
@@ -386,12 +541,13 @@
         </div>
 
 
+
         <!-- RATADRABIK -->
 
         <div class="battlefield-row">
 
             <div class="card-name">
-                Ratadrabik
+                Ratadrabik of Urborg
             </div>
 
             <input
@@ -414,11 +570,13 @@
 
             <div
                 id="ratadrabik-total"
-                class="total-number">
+                class="total-number"
+            >
                 1
             </div>
 
         </div>
+
 
 
         <!-- TEYSA -->
@@ -449,11 +607,13 @@
 
             <div
                 id="teysa-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- DRIVNOD -->
@@ -461,7 +621,7 @@
         <div class="battlefield-row">
 
             <div class="card-name">
-                Drivnod
+                Drivnod, Carnage Dominus
             </div>
 
             <input
@@ -484,11 +644,13 @@
 
             <div
                 id="drivnod-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- GANDALF -->
@@ -519,11 +681,13 @@
 
             <div
                 id="gandalf-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- ROAMING THRONE -->
@@ -554,11 +718,13 @@
 
             <div
                 id="throne-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- DELNEY -->
@@ -566,7 +732,7 @@
         <div class="battlefield-row">
 
             <div class="card-name">
-                Delney
+                Delney, Streetwise Lookout
             </div>
 
             <input
@@ -589,11 +755,13 @@
 
             <div
                 id="delney-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- MONDRAK -->
@@ -601,7 +769,7 @@
         <div class="battlefield-row">
 
             <div class="card-name">
-                Mondrak
+                Mondrak, Glory Dominus
             </div>
 
             <input
@@ -624,11 +792,13 @@
 
             <div
                 id="mondrak-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
+
 
 
         <!-- OJER TAQ -->
@@ -636,7 +806,7 @@
         <div class="battlefield-row">
 
             <div class="card-name">
-                Ojer Taq
+                Ojer Taq, Deepest Foundation
             </div>
 
             <input
@@ -659,48 +829,89 @@
 
             <div
                 id="ojer-total"
-                class="total-number">
+                class="total-number"
+            >
                 0
             </div>
 
         </div>
 
 
-        <!-- HEARTLESS -->
-
-        <div class="battlefield-row">
-
-            <div class="card-name">
-                Heartless Summoning
-            </div>
-
-            <input
-                id="heartless-original"
-                class="number-input"
-                type="number"
-                min="0"
-                value="0"
-                onchange="calculate()"
-            >
-
-            <input
-                id="heartless-token"
-                class="number-input"
-                type="number"
-                min="0"
-                value="0"
-                onchange="calculate()"
-            >
-
-            <div
-                id="heartless-total"
-                class="total-number">
-                0
-            </div>
-
-        </div>
 
     </div>
+
+
+
+    <!-- =====================================
+         SPECIAL EFFECTS
+         ===================================== -->
+
+    <div class="card">
+
+
+        <h2>
+            Battlefield Effects
+        </h2>
+
+
+        <div class="description">
+
+            Noncreature permanents that affect the
+            battlefield are tracked separately.
+
+        </div>
+
+
+        <div class="effect-row">
+
+            <span>
+                Heartless Summoning
+            </span>
+
+            <button
+                id="heartless-button"
+                class="toggle"
+                onclick="toggleHeartless()"
+            >
+                OFF
+            </button>
+
+        </div>
+
+
+        <div class="effect-row">
+
+            <span>
+                Roaming Throne — chosen type
+            </span>
+
+            <select
+                id="throne-type"
+                onchange="calculate()"
+                style="
+                    background:#111827;
+                    color:white;
+                    border:1px solid #4b5563;
+                    border-radius:6px;
+                    padding:7px;
+                "
+            >
+
+                <option value="Zombie">
+                    Zombie
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+
 
 
     <!-- =====================================
@@ -709,15 +920,18 @@
 
     <div class="card">
 
+
         <h2>
             What Died?
         </h2>
 
+
         <div class="description">
 
-            Select the legendary creatures that died in this
-            event. You can select multiple creatures for a
-            simultaneous death event.
+            Select the legendary creatures that died
+            during this event. Use + for each creature
+            that died. Multiple creatures can be selected
+            for a simultaneous death event.
 
         </div>
 
@@ -733,151 +947,169 @@
 
         <div
             id="deathList"
-            class="death-list">
+            class="death-list"
+        >
         </div>
 
 
     </div>
 
 
+
     <!-- =====================================
-         RESULTS
+         TRIGGER RESULTS
          ===================================== -->
 
     <div class="card">
+
 
         <div class="result-label">
             RATADRABIK TRIGGERS
         </div>
 
+
         <div
             id="triggerResult"
-            class="result">
+            class="result"
+        >
             1
         </div>
 
 
-        <div>
 
-            <div class="breakdown-row">
+        <div class="breakdown-row">
 
-                <span>
-                    Original triggers
-                </span>
+            <span>
+                Original triggers
+            </span>
 
-                <span id="baseTriggers">
-                    1
-                </span>
-
-            </div>
-
-
-            <div class="breakdown-row">
-
-                <span>
-                    Teysa additional
-                </span>
-
-                <span id="teysaBonus">
-                    0
-                </span>
-
-            </div>
-
-
-            <div class="breakdown-row">
-
-                <span>
-                    Drivnod additional
-                </span>
-
-                <span id="drivnodBonus">
-                    0
-                </span>
-
-            </div>
-
-
-            <div class="breakdown-row">
-
-                <span>
-                    Gandalf additional
-                </span>
-
-                <span id="gandalfBonus">
-                    0
-                </span>
-
-            </div>
-
-
-            <div class="breakdown-row">
-
-                <span>
-                    Roaming Throne additional
-                </span>
-
-                <span id="throneBonus">
-                    0
-                </span>
-
-            </div>
-
-
-            <div class="breakdown-row">
-
-                <span>
-                    Delney additional
-                </span>
-
-                <span id="delneyBonus">
-                    0
-                </span>
-
-            </div>
-
-
-            <div
-                class="breakdown-row breakdown-total">
-
-                <span>
-                    Total
-                </span>
-
-                <span id="totalTriggers">
-                    1
-                </span>
-
-            </div>
+            <span id="baseTriggers">
+                1
+            </span>
 
         </div>
+
+
+
+        <div class="breakdown-row">
+
+            <span>
+                Teysa additional
+            </span>
+
+            <span id="teysaBonus">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div class="breakdown-row">
+
+            <span>
+                Drivnod additional
+            </span>
+
+            <span id="drivnodBonus">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div class="breakdown-row">
+
+            <span>
+                Gandalf additional
+            </span>
+
+            <span id="gandalfBonus">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div class="breakdown-row">
+
+            <span>
+                Roaming Throne additional
+            </span>
+
+            <span id="throneBonus">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div class="breakdown-row">
+
+            <span>
+                Delney additional
+            </span>
+
+            <span id="delneyBonus">
+                0
+            </span>
+
+        </div>
+
+
+
+        <div
+            class="breakdown-row breakdown-total"
+        >
+
+            <span>
+                Total
+            </span>
+
+            <span id="totalTriggers">
+                1
+            </span>
+
+        </div>
+
 
     </div>
 
 
+
     <!-- =====================================
-         TOKEN RESULT
+         TOKEN RESULTS
          ===================================== -->
 
     <div class="card">
+
 
         <div class="result-label">
             RATADRABIK TOKEN CREATIONS
         </div>
 
+
         <div
             id="tokenResult"
-            class="token-result">
+            class="token-result"
+        >
             1
         </div>
 
+
         <div class="info">
 
-            This is the number of Ratadrabik token-creation
-            events before token-replacement effects such as
-            Mondrak and Ojer Taq.
+            Each Ratadrabik trigger creates one
+            Zombie token copy of the legendary creature
+            that died. Mondrak and Ojer Taq replacement
+            effects will be incorporated into this result
+            in a later version.
 
         </div>
+
 
     </div>
 
@@ -885,255 +1117,307 @@
 </div>
 
 
+
 <script>
 
 
-/* =========================================
-   CARD DATA
-   ========================================= */
-
-const cardData = {
-
-    "Ratadrabik of Urborg": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: false,
-        ratadrabikTriggerSource: true
-    },
-
-    "Teysa Karlov": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        additionalDeathTriggers: true
-    },
-
-    "Drivnod, Carnage Dominus": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        additionalDeathTriggers: true
-    },
-
-    "Gandalf the White": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        additionalDeathTriggers: true
-    },
-
-    "Roaming Throne": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        additionalDeathTriggers: true,
-        chosenType: "Zombie"
-    },
-
-    "Delney, Streetwise Lookout": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        additionalDeathTriggers: true,
-        powerRestriction: 2
-    },
-
-    "Mondrak, Glory Dominus": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        tokenReplacement: "double"
-    },
-
-    "Ojer Taq, Deepest Foundation": {
-        legendary: true,
-        creature: true,
-        ratadrabikCopy: true,
-        tokenReplacement: "triple"
-    },
-
-    "Heartless Summoning": {
-        legendary: false,
-        creature: false,
-        ratadrabikCopy: false,
-        creaturePowerModifier: -1,
-        creatureToughnessModifier: -1
-    }
-
-};
-
-
-    /* =========================================
-   DECK'S LEGENDARY CREATURES
-   ========================================= */
+/* =====================================================
+   DECK DATA
+   ===================================================== */
 
 const legendaryCreatures = [
 
     "Ao, the Dawn Sky",
+
     "Athreos, God of Passage",
+
     "Ayara, First of Locthwain",
+
     "Boromir, Warden of the Tower",
+
     "Braids, Arisen Nightmare",
+
     "Colonel Autumn",
+
     "Commissar Severina Raine",
+
     "Delney, Streetwise Lookout",
+
     "Drivnod, Carnage Dominus",
+
     "Elder Arthur Maxson",
+
     "Elas il-Kor, Sadistic Pilgrim",
+
     "Elesh Norn, Grand Cenobite",
+
     "Gandalf the White",
+
     "God-Eternal Bontu",
+
     "Junji, the Midnight Sky",
+
     "Kambal, Consul of Allocation",
+
     "Kambal, Profiteering Mayor",
+
     "Kokusho, the Evening Star",
+
     "Loran of the Third Path",
+
     "Mondrak, Glory Dominus",
+
     "Ojer Taq, Deepest Foundation",
+
     "Roaming Throne",
+
     "Sheoldred, Whispering One",
+
     "Tataru Taru",
+
     "Teysa Karlov",
+
     "Venat, Heart of Hydaelyn",
+
     "Vraan, Executioner Thane",
+
     "Yahenni, Undying Partisan",
+
     "Yawgmoth, Thran Physician"
 
 ];
 
-    
-/* =========================================
-   LEGENDARY CREATURE LIST
-   ========================================= */
 
-const legendaryCreatures = Object.keys(cardData)
-    .filter(card =>
-        cardData[card].legendary &&
-        cardData[card].creature
-    );
 
-/* =========================================
+/* =====================================================
    DEATH COUNTS
-   ========================================= */
+   ===================================================== */
 
 const deathCounts = {};
 
 
-/* =========================================
-   INITIALIZE DEATH COUNTS
-   ========================================= */
-
 legendaryCreatures.forEach(
-    card => deathCounts[card] = 0
+    card => {
+        deathCounts[card] = 0;
+    }
 );
 
 
-/* =========================================
-   RENDER DEATH LIST
-   ========================================= */
 
-function renderDeathList() {
+/* =====================================================
+   HEARTLESS SUMMONING
+   ===================================================== */
 
-    const list =
-        document.getElementById("deathList");
-
-    list.innerHTML = "";
+let heartlessSummoning = false;
 
 
-    legendaryCreatures.forEach(card => {
+function toggleHeartless() {
 
-        const row =
-            document.createElement("div");
-
-        row.className = "death-row";
-
-        row.dataset.name =
-            card.toLowerCase();
+    heartlessSummoning =
+        !heartlessSummoning;
 
 
-        const name =
-            document.createElement("div");
-
-        name.className = "death-name";
-
-        name.textContent = card;
+    const button =
+        document.getElementById(
+            "heartless-button"
+        );
 
 
-        const minus =
-            document.createElement("button");
+    if (heartlessSummoning) {
 
-        minus.className =
-            "small-button minus";
+        button.textContent = "ON";
 
-        minus.textContent = "−";
+        button.classList.add("active");
 
-        minus.onclick =
-            () => changeDeath(card, -1);
+    } else {
 
+        button.textContent = "OFF";
 
-        const count =
-            document.createElement("div");
+        button.classList.remove("active");
 
-        count.className =
-            "death-count";
-
-        count.id =
-            "death-" + card
-                .replace(/[^a-zA-Z0-9]/g, "-");
+    }
 
 
-        count.textContent =
-            deathCounts[card];
-
-
-        const plus =
-            document.createElement("button");
-
-        plus.className =
-            "small-button plus";
-
-        plus.textContent = "+";
-
-        plus.onclick =
-            () => changeDeath(card, 1);
-
-
-        row.appendChild(name);
-        row.appendChild(minus);
-        row.appendChild(count);
-        row.appendChild(plus);
-
-
-        list.appendChild(row);
-
-    });
+    calculate();
 
 }
 
 
-/* =========================================
-   CHANGE DEATH COUNT
-   ========================================= */
 
-function changeDeath(card, amount) {
+/* =====================================================
+   RENDER DEATH LIST
+   ===================================================== */
+
+function renderDeathList() {
+
+    const list =
+        document.getElementById(
+            "deathList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    legendaryCreatures.forEach(
+        card => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "death-row";
+
+
+            row.dataset.name =
+                card.toLowerCase();
+
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "death-name";
+
+
+            name.textContent =
+                card;
+
+
+
+            const minus =
+                document.createElement(
+                    "button"
+                );
+
+
+            minus.className =
+                "small-button minus";
+
+
+            minus.textContent =
+                "−";
+
+
+            minus.onclick =
+                () => changeDeath(
+                    card,
+                    -1
+                );
+
+
+
+            const count =
+                document.createElement(
+                    "div"
+                );
+
+
+            count.className =
+                "death-count";
+
+
+            count.id =
+                getDeathElementId(
+                    card
+                );
+
+
+            count.textContent =
+                deathCounts[card];
+
+
+
+            const plus =
+                document.createElement(
+                    "button"
+                );
+
+
+            plus.className =
+                "small-button plus";
+
+
+            plus.textContent =
+                "+";
+
+
+            plus.onclick =
+                () => changeDeath(
+                    card,
+                    1
+                );
+
+
+
+            row.appendChild(name);
+
+            row.appendChild(minus);
+
+            row.appendChild(count);
+
+            row.appendChild(plus);
+
+
+            list.appendChild(row);
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   DEATH ELEMENT ID
+   ===================================================== */
+
+function getDeathElementId(card) {
+
+    return (
+        "death-" +
+        card
+            .replace(
+                /[^a-zA-Z0-9]/g,
+                "-"
+            )
+    );
+
+}
+
+
+
+/* =====================================================
+   CHANGE DEATH COUNT
+   ===================================================== */
+
+function changeDeath(
+    card,
+    amount
+) {
 
     deathCounts[card] += amount;
 
 
-    if (deathCounts[card] < 0) {
+    if (
+        deathCounts[card] < 0
+    ) {
 
         deathCounts[card] = 0;
 
     }
 
 
-    const id =
-        "death-" +
-        card.replace(/[^a-zA-Z0-9]/g, "-");
-
-
-    document.getElementById(id)
-        .textContent =
+    document.getElementById(
+        getDeathElementId(card)
+    ).textContent =
         deathCounts[card];
 
 
@@ -1142,16 +1426,18 @@ function changeDeath(card, amount) {
 }
 
 
-/* =========================================
-   SEARCH
-   ========================================= */
+
+/* =====================================================
+   SEARCH DEATH LIST
+   ===================================================== */
 
 function filterDeaths() {
 
     const search =
         document.getElementById(
             "deathSearch"
-        ).value.toLowerCase();
+        ).value
+        .toLowerCase();
 
 
     const rows =
@@ -1160,32 +1446,37 @@ function filterDeaths() {
         );
 
 
-    rows.forEach(row => {
+    rows.forEach(
+        row => {
 
-        const name =
-            row.dataset.name;
+            const name =
+                row.dataset.name;
 
 
-        if (name.includes(search)) {
+            if (
+                name.includes(search)
+            ) {
 
-            row.style.display =
-                "grid";
+                row.style.display =
+                    "grid";
 
-        } else {
+            } else {
 
-            row.style.display =
-                "none";
+                row.style.display =
+                    "none";
+
+            }
 
         }
-
-    });
+    );
 
 }
 
 
-/* =========================================
-   READ NUMBER INPUT
-   ========================================= */
+
+/* =====================================================
+   READ NUMBER
+   ===================================================== */
 
 function getValue(id) {
 
@@ -1196,9 +1487,10 @@ function getValue(id) {
 }
 
 
-/* =========================================
+
+/* =====================================================
    TOTAL BATTLEFIELD COPIES
-   ========================================= */
+   ===================================================== */
 
 function totalCopies(card) {
 
@@ -1206,6 +1498,7 @@ function totalCopies(card) {
         getValue(
             card + "-original"
         );
+
 
     const token =
         getValue(
@@ -1228,77 +1521,106 @@ function totalCopies(card) {
 }
 
 
-/* =========================================
-   TOTAL CREATURES THAT DIED
-   ========================================= */
+
+/* =====================================================
+   TOTAL DEATHS
+   ===================================================== */
 
 function totalDeaths() {
 
     return Object.values(
         deathCounts
     ).reduce(
-        (sum, count) =>
-            sum + count,
+        (
+            total,
+            count
+        ) => total + count,
         0
     );
 
 }
 
 
-/* =========================================
+
+/* =====================================================
    MAIN CALCULATION
-   ========================================= */
+   ===================================================== */
 
 function calculate() {
 
 
-    /*
-     * BATTLEFIELD
-     */
+    /* -----------------------------------------------
+       BATTLEFIELD
+       ----------------------------------------------- */
 
     const ratadrabik =
-        totalCopies("ratadrabik");
+        totalCopies(
+            "ratadrabik"
+        );
+
 
     const teysa =
-        totalCopies("teysa");
+        totalCopies(
+            "teysa"
+        );
+
 
     const drivnod =
-        totalCopies("drivnod");
+        totalCopies(
+            "drivnod"
+        );
+
 
     const gandalf =
-        totalCopies("gandalf");
+        totalCopies(
+            "gandalf"
+        );
+
 
     const throne =
-        totalCopies("throne");
+        totalCopies(
+            "throne"
+        );
+
 
     const delney =
-        totalCopies("delney");
+        totalCopies(
+            "delney"
+        );
+
 
     const mondrak =
-        totalCopies("mondrak");
+        totalCopies(
+            "mondrak"
+        );
+
 
     const ojer =
-        totalCopies("ojer");
+        totalCopies(
+            "ojer"
+        );
 
-    totalCopies("heartless");
 
 
-    /*
-     * DEATH EVENT
-     */
+    /* -----------------------------------------------
+       DEATH EVENT
+       ----------------------------------------------- */
 
     const deaths =
         totalDeaths();
 
 
-    /*
-     * RATADRABIK
-     */
+
+    /* -----------------------------------------------
+       BASE RATADRABIK TRIGGERS
+       ----------------------------------------------- */
 
     let baseTriggers = 0;
 
 
-    if (ratadrabik > 0) {
+    if (
+        ratadrabik > 0
+    ) {
 
         baseTriggers =
             deaths;
@@ -1306,35 +1628,74 @@ function calculate() {
     }
 
 
-    /*
-     * EACH ADDITIONAL-TRIGGER
-     * PERMANENT ADDS ONE.
-     */
+
+    /* -----------------------------------------------
+       ADDITIONAL TRIGGERS
+
+       IMPORTANT:
+
+       These effects add ONE additional trigger
+       per applicable permanent.
+
+       They do NOT multiply each other.
+       ----------------------------------------------- */
 
     const teysaBonus =
         deaths * teysa;
 
+
     const drivnodBonus =
         deaths * drivnod;
+
 
     const gandalfBonus =
         deaths * gandalf;
 
-    const throneBonus =
-        deaths * throne;
 
 
-    /*
-     * DELNEY WILL BE IMPLEMENTED
-     * AFTER WE ADD THE POWER CHECK.
-     */
+    /* -----------------------------------------------
+       ROAMING THRONE
+
+       For this version, Throne contributes when
+       Zombie is selected.
+       ----------------------------------------------- */
+
+    const throneType =
+        document.getElementById(
+            "throne-type"
+        ).value;
+
+
+    let throneBonus = 0;
+
+
+    if (
+        throneType === "Zombie"
+    ) {
+
+        throneBonus =
+            deaths * throne;
+
+    }
+
+
+
+    /* -----------------------------------------------
+       DELNEY
+
+       Delney's power condition will be implemented
+       after we add Ratadrabik's actual power tracking.
+
+       For now this remains zero.
+       ----------------------------------------------- */
 
     const delneyBonus = 0;
 
 
-    /*
-     * TOTAL
-     */
+
+    /* -----------------------------------------------
+       TOTAL TRIGGERS
+       ----------------------------------------------- */
 
     const totalTriggers =
 
@@ -1351,9 +1712,10 @@ function calculate() {
         delneyBonus;
 
 
-    /*
-     * DISPLAY
-     */
+
+    /* -----------------------------------------------
+       DISPLAY RESULTS
+       ----------------------------------------------- */
 
     document.getElementById(
         "baseTriggers"
@@ -1403,6 +1765,13 @@ function calculate() {
         totalTriggers;
 
 
+
+    /* -----------------------------------------------
+       TOKEN CREATIONS
+
+       Replacement effects will be added later.
+       ----------------------------------------------- */
+
     document.getElementById(
         "tokenResult"
     ).textContent =
@@ -1411,16 +1780,19 @@ function calculate() {
 }
 
 
-/* =========================================
-   START
-   ========================================= */
+
+/* =====================================================
+   INITIALIZE
+   ===================================================== */
 
 renderDeathList();
 
 calculate();
 
+
 </script>
 
 
 </body>
+
 </html>

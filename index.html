@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ratadrabik Token Calculator</title>
 
 <style>
@@ -58,9 +57,9 @@ h2 {
 }
 
 
-/* ================================
+/* =========================================
    BATTLEFIELD
-   ================================ */
+   ========================================= */
 
 .battlefield-header,
 .battlefield-row {
@@ -117,12 +116,11 @@ h2 {
 }
 
 
-/* ================================
+/* =========================================
    BATTLEFIELD OPTIONS
-   ================================ */
+   ========================================= */
 
-.throne-controls,
-.heartless-controls {
+.option-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -162,9 +160,9 @@ select {
 }
 
 
-/* ================================
+/* =========================================
    WHAT DIED
-   ================================ */
+   ========================================= */
 
 .death-search {
     width: 100%;
@@ -250,9 +248,9 @@ select {
 }
 
 
-/* ================================
-   RESULT
-   ================================ */
+/* =========================================
+   RESULTS
+   ========================================= */
 
 .result-card {
     text-align: center;
@@ -332,9 +330,9 @@ select {
 }
 
 
-/* ================================
+/* =========================================
    BUTTONS
-   ================================ */
+   ========================================= */
 
 .apply-button,
 .reset-button {
@@ -377,9 +375,9 @@ select {
 }
 
 
-/* ================================
+/* =========================================
    MOBILE
-   ================================ */
+   ========================================= */
 
 @media (max-width: 500px) {
 
@@ -436,7 +434,6 @@ select {
 
 <div class="container">
 
-
 <h1>
 Ratadrabik Token Calculator
 </h1>
@@ -446,10 +443,9 @@ Ratadrabik of Urborg Commander
 </div>
 
 
-
-<!-- ==========================================
+<!-- =========================================
      BATTLEFIELD
-     ========================================== -->
+     ========================================= -->
 
 <div class="card">
 
@@ -458,33 +454,20 @@ Battlefield
 </h2>
 
 <div class="description">
-Enter the permanents currently on the battlefield.
-Leave unused fields blank. Token copies are tracked
-separately because Ratadrabik-created copies are Zombies.
-Your battlefield is automatically saved on this device.
+Track only permanents that can affect how many
+Zombie tokens Ratadrabik creates. Leave unused
+fields blank.
 </div>
 
 
 <div class="battlefield-header">
 
-<div>
-Permanent
-</div>
-
-<div>
-Original
-</div>
-
-<div>
-Token
-</div>
-
-<div>
-Total
-</div>
+<div>Permanent</div>
+<div>Original</div>
+<div>Token</div>
+<div>Total</div>
 
 </div>
-
 
 
 <!-- RATADRABIK -->
@@ -496,7 +479,7 @@ Total
 Ratadrabik of Urborg
 
 <span class="card-note">
-Zombie • Wizard • 3/3
+Zombie • 3/3
 </span>
 
 </div>
@@ -531,7 +514,6 @@ class="total-number"
 </div>
 
 
-
 <!-- TEYSA -->
 
 <div class="battlefield-row">
@@ -541,7 +523,7 @@ class="total-number"
 Teysa Karlov
 
 <span class="card-note">
-Death triggers +1
+Death triggers additional time
 </span>
 
 </div>
@@ -576,7 +558,6 @@ class="total-number"
 </div>
 
 
-
 <!-- DRIVNOD -->
 
 <div class="battlefield-row">
@@ -586,7 +567,7 @@ class="total-number"
 Drivnod, Carnage Dominus
 
 <span class="card-note">
-Death triggers +1
+Death triggers additional time
 </span>
 
 </div>
@@ -621,7 +602,6 @@ class="total-number"
 </div>
 
 
-
 <!-- GANDALF -->
 
 <div class="battlefield-row">
@@ -631,7 +611,7 @@ class="total-number"
 Gandalf the White
 
 <span class="card-note">
-Legendary death triggers +1
+Legendary death triggers additional time
 </span>
 
 </div>
@@ -666,7 +646,6 @@ class="total-number"
 </div>
 
 
-
 <!-- ROAMING THRONE -->
 
 <div class="battlefield-row">
@@ -676,7 +655,7 @@ class="total-number"
 Roaming Throne
 
 <span class="card-note">
-Matching creature type
+Chosen creature type
 </span>
 
 </div>
@@ -711,7 +690,6 @@ class="total-number"
 </div>
 
 
-
 <!-- DELNEY -->
 
 <div class="battlefield-row">
@@ -721,7 +699,7 @@ class="total-number"
 Delney, Streetwise Lookout
 
 <span class="card-note">
-Can double Ratadrabik when power ≤2
+Doubles eligible Ratadrabik triggers
 </span>
 
 </div>
@@ -754,7 +732,6 @@ class="total-number"
 </div>
 
 </div>
-
 
 
 <!-- MONDRAK -->
@@ -801,7 +778,6 @@ class="total-number"
 </div>
 
 
-
 <!-- OJER TAQ -->
 
 <div class="battlefield-row">
@@ -846,10 +822,9 @@ class="total-number"
 </div>
 
 
-
 <!-- ROAMING THRONE TYPE -->
 
-<div class="throne-controls">
+<div class="option-row">
 
 <label for="throne-type">
 Roaming Throne Type
@@ -881,10 +856,9 @@ Other
 </div>
 
 
-
 <!-- HEARTLESS SUMMONING -->
 
-<div class="heartless-controls">
+<div class="option-row">
 
 <label>
 Heartless Summoning
@@ -915,10 +889,9 @@ Yes
 </div>
 
 
-
-<!-- ==========================================
+<!-- =========================================
      WHAT DIED
-     ========================================== -->
+     ========================================= -->
 
 <div class="card">
 
@@ -927,7 +900,7 @@ What Died?
 </h2>
 
 <div class="description">
-Select the legendary creatures that died during the event.
+Select the legendary creatures that died.
 Selected creatures automatically move to the top.
 </div>
 
@@ -948,10 +921,9 @@ class="death-list"
 </div>
 
 
-
-<!-- ==========================================
-     RESULT
-     ========================================== -->
+<!-- =========================================
+     RESULTS
+     ========================================= -->
 
 <div class="card result-card">
 
@@ -1038,82 +1010,53 @@ RESET BATTLEFIELD
 
 
 <div class="info">
-Apply Event removes dead originals and adds the
-resulting Ratadrabik Zombie copies. Your battlefield
-is automatically saved in this browser.
+Apply Event updates only the relevant battlefield
+permanents. The calculator does not simulate
+state-based actions or creature survival.
 </div>
 
 </div>
 
 </div>
-
 
 
 <script>
 
 
-/* ==================================================
-   LEGENDARY CREATURES
-   ================================================== */
+/* =========================================
+   LEGENDARY CREATURE LIST
+   ========================================= */
 
 const legendaryCreatures = [
 
 "Ao, the Dawn Sky",
-
 "Athreos, God of Passage",
-
 "Ayara, First of Locthwain",
-
 "Boromir, Warden of the Tower",
-
 "Braids, Arisen Nightmare",
-
 "Colonel Autumn",
-
 "Commissar Severina Raine",
-
 "Delney, Streetwise Lookout",
-
 "Drivnod, Carnage Dominus",
-
 "Elder Arthur Maxson",
-
 "Elas il-Kor, Sadistic Pilgrim",
-
 "Elesh Norn, Grand Cenobite",
-
 "Gandalf the White",
-
 "God-Eternal Bontu",
-
 "Junji, the Midnight Sky",
-
 "Kambal, Consul of Allocation",
-
 "Kambal, Profiteering Mayor",
-
 "Kokusho, the Evening Star",
-
 "Loran of the Third Path",
-
 "Mondrak, Glory Dominus",
-
 "Ojer Taq, Deepest Foundation",
-
 "Roaming Throne",
-
 "Sheoldred, Whispering One",
-
 "Tataru Taru",
-
 "Teysa Karlov",
-
 "Venat, Heart of Hydaelyn",
-
 "Vraan, Executioner Thane",
-
 "Yahenni, Undying Partisan",
-
 "Yawgmoth, Thran Physician"
 
 ];
@@ -1128,35 +1071,35 @@ legendaryCreatures.forEach(card => {
 });
 
 
-/* ==================================================
-   BATTLEFIELD FIELDS
-   ================================================== */
+/* =========================================
+   BATTLEFIELD STORAGE
+   ========================================= */
 
 const battlefieldFields = [
 
-    "ratadrabik-original",
-    "ratadrabik-token",
+"ratadrabik-original",
+"ratadrabik-token",
 
-    "teysa-original",
-    "teysa-token",
+"teysa-original",
+"teysa-token",
 
-    "drivnod-original",
-    "drivnod-token",
+"drivnod-original",
+"drivnod-token",
 
-    "gandalf-original",
-    "gandalf-token",
+"gandalf-original",
+"gandalf-token",
 
-    "throne-original",
-    "throne-token",
+"throne-original",
+"throne-token",
 
-    "delney-original",
-    "delney-token",
+"delney-original",
+"delney-token",
 
-    "mondrak-original",
-    "mondrak-token",
+"mondrak-original",
+"mondrak-token",
 
-    "ojer-original",
-    "ojer-token"
+"ojer-original",
+"ojer-token"
 
 ];
 
@@ -1165,16 +1108,12 @@ const STORAGE_KEY =
     "ratadrabikCalculatorBattlefield";
 
 
-/* ==================================================
-   HEARTLESS SUMMONING STATE
-   ================================================== */
-
 let heartlessSummoning = false;
 
 
-/* ==================================================
-   SELECT FIELD
-   ================================================== */
+/* =========================================
+   SELECT NUMBER FIELD
+   ========================================= */
 
 function selectField(field) {
 
@@ -1183,9 +1122,9 @@ function selectField(field) {
 }
 
 
-/* ==================================================
-   GET VALUE
-   ================================================== */
+/* =========================================
+   GET NUMBER
+   ========================================= */
 
 function getValue(id) {
 
@@ -1208,37 +1147,29 @@ function getValue(id) {
 }
 
 
-/* ==================================================
-   SET HEARTLESS SUMMONING
-   ================================================== */
+/* =========================================
+   HEARTLESS SUMMONING
+   ========================================= */
 
 function setHeartless(active) {
 
     heartlessSummoning = active;
 
 
-    const noButton =
-        document.getElementById(
-            "heartless-no"
+    document
+        .getElementById("heartless-no")
+        .classList.toggle(
+            "active",
+            !active
         );
 
 
-    const yesButton =
-        document.getElementById(
-            "heartless-yes"
+    document
+        .getElementById("heartless-yes")
+        .classList.toggle(
+            "active",
+            active
         );
-
-
-    noButton.classList.toggle(
-        "active",
-        !active
-    );
-
-
-    yesButton.classList.toggle(
-        "active",
-        active
-    );
 
 
     calculate();
@@ -1246,9 +1177,85 @@ function setHeartless(active) {
 }
 
 
-/* ==================================================
+/* =========================================
+   CURRENT RATADRABIK POWER
+   ========================================= */
+
+function ratadrabikCurrentPower() {
+
+    /*
+     * Ratadrabik is normally 3/3.
+     * Heartless Summoning gives -1/-1.
+     */
+
+    return heartlessSummoning
+        ? 2
+        : 3;
+
+}
+
+
+/* =========================================
+   TOTAL COPIES
+   ========================================= */
+
+function totalCopies(card) {
+
+    const original =
+        getValue(
+            card + "-original"
+        );
+
+
+    const token =
+        getValue(
+            card + "-token"
+        );
+
+
+    const total =
+        original + token;
+
+
+    const display =
+        document.getElementById(
+            card + "-total"
+        );
+
+
+    if (display) {
+
+        display.textContent =
+            total;
+
+    }
+
+
+    return total;
+
+}
+
+
+/* =========================================
+   TOTAL DEATHS
+   ========================================= */
+
+function totalDeaths() {
+
+    return Object.values(
+        deathCounts
+    ).reduce(
+        (total, count) =>
+            total + count,
+        0
+    );
+
+}
+
+
+/* =========================================
    SAVE BATTLEFIELD
-   ================================================== */
+   ========================================= */
 
 function saveBattlefield() {
 
@@ -1281,9 +1288,9 @@ function saveBattlefield() {
 }
 
 
-/* ==================================================
+/* =========================================
    LOAD BATTLEFIELD
-   ================================================== */
+   ========================================= */
 
 function loadBattlefield() {
 
@@ -1365,67 +1372,9 @@ function loadBattlefield() {
 }
 
 
-/* ==================================================
-   TOTAL COPIES
-   ================================================== */
-
-function totalCopies(card) {
-
-    const original =
-        getValue(
-            card + "-original"
-        );
-
-
-    const token =
-        getValue(
-            card + "-token"
-        );
-
-
-    const total =
-        original + token;
-
-
-    const display =
-        document.getElementById(
-            card + "-total"
-        );
-
-
-    if (display) {
-
-        display.textContent =
-            total;
-
-    }
-
-
-    return total;
-
-}
-
-
-/* ==================================================
-   TOTAL DEATHS
-   ================================================== */
-
-function totalDeaths() {
-
-    return Object.values(
-        deathCounts
-    ).reduce(
-        (total, count) =>
-            total + count,
-        0
-    );
-
-}
-
-
-/* ==================================================
+/* =========================================
    RENDER DEATH LIST
-   ================================================== */
+   ========================================= */
 
 function renderDeathList() {
 
@@ -1439,9 +1388,11 @@ function renderDeathList() {
 
 
     const search =
-        document.getElementById(
-            "deathSearch"
-        )?.value.toLowerCase() || "";
+        (
+            document.getElementById(
+                "deathSearch"
+            )?.value || ""
+        ).toLowerCase();
 
 
     const selected =
@@ -1573,9 +1524,9 @@ function renderDeathList() {
 }
 
 
-/* ==================================================
+/* =========================================
    APPEND DEATH ROW
-   ================================================== */
+   ========================================= */
 
 function appendDeathRow(
     list,
@@ -1671,11 +1622,8 @@ function appendDeathRow(
 
 
     row.appendChild(name);
-
     row.appendChild(minus);
-
     row.appendChild(count);
-
     row.appendChild(plus);
 
 
@@ -1684,9 +1632,9 @@ function appendDeathRow(
 }
 
 
-/* ==================================================
+/* =========================================
    CHANGE DEATH
-   ================================================== */
+   ========================================= */
 
 function changeDeath(
     card,
@@ -1712,9 +1660,9 @@ function changeDeath(
 }
 
 
-/* ==================================================
+/* =========================================
    SEARCH
-   ================================================== */
+   ========================================= */
 
 function filterDeaths() {
 
@@ -1723,37 +1671,14 @@ function filterDeaths() {
 }
 
 
-/* ==================================================
-   RATADRABIK CURRENT POWER
-   ================================================== */
+/* =========================================
+   DELNEY
+   ========================================= */
 
-function ratadrabikCurrentPower() {
-
-    const basePower = 3;
-
-
-    if (heartlessSummoning) {
-
-        return basePower - 1;
-
-    }
-
-
-    return basePower;
-
-}
-
-
-/* ==================================================
-   DELNEY APPLIES
-   ================================================== */
-
-function delneyAppliesToRatadrabik() {
+function delneyApplies() {
 
     const delney =
-        totalCopies(
-            "delney"
-        );
+        totalCopies("delney");
 
 
     if (
@@ -1765,6 +1690,11 @@ function delneyAppliesToRatadrabik() {
     }
 
 
+    /*
+     * Delney checks Ratadrabik's
+     * current power.
+     */
+
     return (
         ratadrabikCurrentPower() <= 2
     );
@@ -1772,87 +1702,68 @@ function delneyAppliesToRatadrabik() {
 }
 
 
-/* ==================================================
-   RATADRABIK TRIGGERS
-   ================================================== */
+/* =========================================
+   RATADRABIK TRIGGERS PER DEATH
+   ========================================= */
 
-function calculateRatadrabikTriggers() {
+function triggersPerDeath() {
 
     const ratadrabik =
-        totalCopies(
-            "ratadrabik"
-        );
+        totalCopies("ratadrabik");
 
 
     if (
-        ratadrabik === 0
+        ratadrabik <= 0
     ) {
 
-        return {
-
-            base: 0,
-            teysa: 0,
-            drivnod: 0,
-            gandalf: 0,
-            throne: 0,
-            delney: 0,
-            total: 0
-
-        };
+        return 0;
 
     }
 
 
-    const ratadrabikDeaths =
-        deathCounts[
-            "Ratadrabik of Urborg"
-        ] || 0;
+    /*
+     * One Ratadrabik creates one
+     * trigger for each qualifying
+     * legendary creature that died.
+     *
+     * This function calculates the
+     * number of Ratadrabik triggers
+     * produced by ONE qualifying death.
+     */
 
-
-    const qualifyingDeaths =
-        Math.max(
-            0,
-            totalDeaths() -
-            ratadrabikDeaths
-        );
-
-
-    const base =
-        qualifyingDeaths *
+    let triggers =
         ratadrabik;
 
 
     /*
-     * Teysa, Drivnod and Gandalf
-     * each add another copy of
-     * the original Ratadrabik triggers.
+     * Teysa
      */
 
-    const teysa =
-        base *
-        totalCopies(
-            "teysa"
-        );
-
-
-    const drivnod =
-        base *
-        totalCopies(
-            "drivnod"
-        );
-
-
-    const gandalf =
-        base *
-        totalCopies(
-            "gandalf"
-        );
+    triggers +=
+        ratadrabik *
+        totalCopies("teysa");
 
 
     /*
-     * Roaming Throne applies when
-     * its chosen creature type matches
-     * Ratadrabik.
+     * Drivnod
+     */
+
+    triggers +=
+        ratadrabik *
+        totalCopies("drivnod");
+
+
+    /*
+     * Gandalf
+     */
+
+    triggers +=
+        ratadrabik *
+        totalCopies("gandalf");
+
+
+    /*
+     * Roaming Throne
      *
      * Ratadrabik is both a Zombie
      * and a Wizard.
@@ -1869,54 +1780,117 @@ function calculateRatadrabikTriggers() {
         throneType === "Wizard";
 
 
-    const throne =
+    if (
         throneApplies
-            ?
-        base *
-        totalCopies(
-            "throne"
-        )
-            :
-        0;
+    ) {
+
+        triggers +=
+            ratadrabik *
+            totalCopies("throne");
+
+    }
 
 
     /*
-     * Delney applies when Ratadrabik
-     * has power 2 or less.
+     * Delney
      *
-     * Heartless Summoning gives
-     * creatures -1/-1, making
-     * Ratadrabik 2/2.
+     * Heartless Summoning changes
+     * Ratadrabik from 3 power to 2 power,
+     * making Delney applicable.
      */
 
-    const delney =
-        delneyAppliesToRatadrabik()
-            ?
-        base *
-        totalCopies(
-            "delney"
-        )
-            :
-        0;
+    if (
+        delneyApplies()
+    ) {
+
+        triggers +=
+            ratadrabik *
+            totalCopies("delney");
+
+    }
+
+
+    return triggers;
+
+}
+
+
+/* =========================================
+   FULL TRIGGER RESULT
+   ========================================= */
+
+function calculateRatadrabikTriggers() {
+
+    const qualifyingDeaths =
+        Math.max(
+            0,
+            totalDeaths() -
+            (
+                deathCounts[
+                    "Ratadrabik of Urborg"
+                ] || 0
+            )
+        );
+
+
+    const perDeath =
+        triggersPerDeath();
 
 
     const total =
-        base +
-        teysa +
-        drivnod +
-        gandalf +
-        throne +
-        delney;
+        qualifyingDeaths *
+        perDeath;
 
 
     return {
 
-        base,
-        teysa,
-        drivnod,
-        gandalf,
-        throne,
-        delney,
+        base:
+            qualifyingDeaths *
+            totalCopies("ratadrabik"),
+
+        teysa:
+            qualifyingDeaths *
+            totalCopies("ratadrabik") *
+            totalCopies("teysa"),
+
+        drivnod:
+            qualifyingDeaths *
+            totalCopies("ratadrabik") *
+            totalCopies("drivnod"),
+
+        gandalf:
+            qualifyingDeaths *
+            totalCopies("ratadrabik") *
+            totalCopies("gandalf"),
+
+        throne:
+            (
+                (
+                    document.getElementById(
+                        "throne-type"
+                    ).value === "Zombie"
+                    ||
+                    document.getElementById(
+                        "throne-type"
+                    ).value === "Wizard"
+                )
+            )
+            ?
+            qualifyingDeaths *
+            totalCopies("ratadrabik") *
+            totalCopies("throne")
+            :
+            0,
+
+        delney:
+            delneyApplies()
+            ?
+            qualifyingDeaths *
+            totalCopies("ratadrabik") *
+            totalCopies("delney")
+            :
+            0,
+
         total
 
     };
@@ -1924,22 +1898,18 @@ function calculateRatadrabikTriggers() {
 }
 
 
-/* ==================================================
+/* =========================================
    TOKEN MULTIPLIERS
-   ================================================== */
+   ========================================= */
 
 function calculateTokenMultiplier() {
 
     const mondrak =
-        totalCopies(
-            "mondrak"
-        );
+        totalCopies("mondrak");
 
 
     const ojer =
-        totalCopies(
-            "ojer"
-        );
+        totalCopies("ojer");
 
 
     const mondrakMultiplier =
@@ -1973,9 +1943,9 @@ function calculateTokenMultiplier() {
 }
 
 
-/* ==================================================
+/* =========================================
    BREAKDOWN
-   ================================================== */
+   ========================================= */
 
 function displayBreakdown(
     result
@@ -2054,9 +2024,7 @@ function displayBreakdown(
             </strong>`;
 
 
-        container.appendChild(
-            row
-        );
+        container.appendChild(row);
 
     });
 
@@ -2089,9 +2057,9 @@ function displayBreakdown(
 }
 
 
-/* ==================================================
+/* =========================================
    TOKEN OUTPUT
-   ================================================== */
+   ========================================= */
 
 function updateTokenOutput(
     triggerCount,
@@ -2108,11 +2076,14 @@ function updateTokenOutput(
 
 
     const qualifyingDeaths =
-        totalDeaths() -
-        (
-            deathCounts[
-                "Ratadrabik of Urborg"
-            ] || 0
+        Math.max(
+            0,
+            totalDeaths() -
+            (
+                deathCounts[
+                    "Ratadrabik of Urborg"
+                ] || 0
+            )
         );
 
 
@@ -2124,6 +2095,22 @@ function updateTokenOutput(
         return;
 
     }
+
+
+    /*
+     * Every qualifying death produces
+     * the same number of Ratadrabik
+     * triggers, so this gives us the
+     * exact number of tokens created
+     * for each individual death.
+     */
+
+    const tokensPerDeath =
+        (
+            triggerCount /
+            qualifyingDeaths
+        ) *
+        multiplier;
 
 
     Object.keys(
@@ -2146,13 +2133,8 @@ function updateTokenOutput(
 
 
         const tokenCount =
-
             died *
-            (
-                triggerCount /
-                qualifyingDeaths
-            ) *
-            multiplier;
+            tokensPerDeath;
 
 
         const line =
@@ -2185,37 +2167,24 @@ function updateTokenOutput(
 }
 
 
-/* ==================================================
+/* =========================================
    MAIN CALCULATION
-   ================================================== */
+   ========================================= */
 
 function calculate() {
 
     totalCopies("ratadrabik");
-
     totalCopies("teysa");
-
     totalCopies("drivnod");
-
     totalCopies("gandalf");
-
     totalCopies("throne");
-
     totalCopies("delney");
-
     totalCopies("mondrak");
-
     totalCopies("ojer");
 
 
     const result =
         calculateRatadrabikTriggers();
-
-
-    document.getElementById(
-        "triggerResult"
-    ).textContent =
-        result.total;
 
 
     const multipliers =
@@ -2225,6 +2194,12 @@ function calculate() {
     const actualTokens =
         result.total *
         multipliers.final;
+
+
+    document.getElementById(
+        "triggerResult"
+    ).textContent =
+        result.total;
 
 
     document.getElementById(
@@ -2256,83 +2231,39 @@ function calculate() {
 }
 
 
-/* ==================================================
-   BATTLEFIELD MAP
-   ================================================== */
+/* =========================================
+   RELEVANT BATTLEFIELD MAP
+   ========================================= */
 
 const battlefieldMap = {
 
-    "Ao, the Dawn Sky": null,
-
-    "Athreos, God of Passage": null,
-
-    "Ayara, First of Locthwain": null,
-
-    "Boromir, Warden of the Tower": null,
-
-    "Braids, Arisen Nightmare": null,
-
-    "Colonel Autumn": null,
-
-    "Commissar Severina Raine": null,
-
-    "Delney, Streetwise Lookout":
-        "delney",
+    "Teysa Karlov":
+        "teysa",
 
     "Drivnod, Carnage Dominus":
         "drivnod",
 
-    "Elder Arthur Maxson": null,
-
-    "Elas il-Kor, Sadistic Pilgrim": null,
-
-    "Elesh Norn, Grand Cenobite": null,
-
     "Gandalf the White":
         "gandalf",
 
-    "God-Eternal Bontu": null,
+    "Roaming Throne":
+        "throne",
 
-    "Junji, the Midnight Sky": null,
-
-    "Kambal, Consul of Allocation": null,
-
-    "Kambal, Profiteering Mayor": null,
-
-    "Kokusho, the Evening Star": null,
-
-    "Loran of the Third Path": null,
+    "Delney, Streetwise Lookout":
+        "delney",
 
     "Mondrak, Glory Dominus":
         "mondrak",
 
     "Ojer Taq, Deepest Foundation":
-        "ojer",
-
-    "Roaming Throne":
-        "throne",
-
-    "Sheoldred, Whispering One": null,
-
-    "Tataru Taru": null,
-
-    "Teysa Karlov":
-        "teysa",
-
-    "Venat, Heart of Hydaelyn": null,
-
-    "Vraan, Executioner Thane": null,
-
-    "Yahenni, Undying Partisan": null,
-
-    "Yawgmoth, Thran Physician": null
+        "ojer"
 
 };
 
 
-/* ==================================================
+/* =========================================
    REMOVE ORIGINAL
-   ================================================== */
+   ========================================= */
 
 function removeOriginal(
     card,
@@ -2375,9 +2306,9 @@ function removeOriginal(
 }
 
 
-/* ==================================================
-   ADD TOKEN
-   ================================================== */
+/* =========================================
+   ADD RELEVANT TOKEN COPIES
+   ========================================= */
 
 function addTokenCopies(
     card,
@@ -2387,6 +2318,12 @@ function addTokenCopies(
     const field =
         battlefieldMap[card];
 
+
+    /*
+     * If the card isn't relevant to
+     * future token calculations, don't
+     * add it to the Battlefield section.
+     */
 
     if (!field) {
 
@@ -2417,9 +2354,9 @@ function addTokenCopies(
 }
 
 
-/* ==================================================
+/* =========================================
    APPLY EVENT
-   ================================================== */
+   ========================================= */
 
 function applyEvent() {
 
@@ -2440,14 +2377,8 @@ function applyEvent() {
     }
 
 
-    const ratadrabik =
-        totalCopies(
-            "ratadrabik"
-        );
-
-
     if (
-        ratadrabik === 0
+        totalCopies("ratadrabik") === 0
     ) {
 
         alert(
@@ -2468,28 +2399,20 @@ function applyEvent() {
 
 
     const qualifyingDeaths =
-        deaths -
-        (
-            deathCounts[
-                "Ratadrabik of Urborg"
-            ] || 0
+        Math.max(
+            0,
+            deaths -
+            (
+                deathCounts[
+                    "Ratadrabik of Urborg"
+                ] || 0
+            )
         );
 
 
-    if (
-        qualifyingDeaths <= 0
-    ) {
-
-        clearDeathEvent();
-
-        return;
-
-    }
-
-
     /*
-     * Remove the original permanents
-     * that died.
+     * Remove relevant original
+     * permanents that died.
      */
 
     Object.keys(
@@ -2518,31 +2441,22 @@ function applyEvent() {
 
 
     /*
-     * Add relevant Zombie copies.
+     * If there were no qualifying
+     * deaths, there are no Ratadrabik
+     * tokens to create.
      */
 
-    Object.keys(
-        deathCounts
-    ).forEach(card => {
+    if (
+        qualifyingDeaths > 0
+    ) {
 
-        const died =
-            deathCounts[card];
+        /*
+         * Calculate the exact number
+         * of tokens created for each
+         * qualifying death.
+         */
 
-
-        if (
-            died <= 0 ||
-            card ===
-            "Ratadrabik of Urborg"
-        ) {
-
-            return;
-
-        }
-
-
-        const tokens =
-
-            died *
+        const tokensPerDeath =
             (
                 result.total /
                 qualifyingDeaths
@@ -2550,22 +2464,57 @@ function applyEvent() {
             multipliers.final;
 
 
-        addTokenCopies(
-            card,
-            tokens
-        );
+        /*
+         * Add ONLY relevant Zombie
+         * copies to the Battlefield.
+         */
 
-    });
+        Object.keys(
+            deathCounts
+        ).forEach(card => {
 
+            const died =
+                deathCounts[card];
+
+
+            if (
+                died <= 0 ||
+                card ===
+                "Ratadrabik of Urborg"
+            ) {
+
+                return;
+
+            }
+
+
+            const relevantTokens =
+                died *
+                tokensPerDeath;
+
+
+            addTokenCopies(
+                card,
+                relevantTokens
+            );
+
+        });
+
+    }
+
+
+    /*
+     * Clear the current death event.
+     */
 
     clearDeathEvent();
 
 }
 
 
-/* ==================================================
-   CLEAR DEATH EVENT
-   ================================================== */
+/* =========================================
+   CLEAR DEATHS
+   ========================================= */
 
 function clearDeathEvent() {
 
@@ -2583,9 +2532,9 @@ function clearDeathEvent() {
 }
 
 
-/* ==================================================
+/* =========================================
    RESET BATTLEFIELD
-   ================================================== */
+   ========================================= */
 
 function resetBattlefield() {
 
@@ -2612,7 +2561,7 @@ function resetBattlefield() {
 
 
     /*
-     * Ratadrabik starts at one.
+     * Ratadrabik begins at one.
      */
 
     document.getElementById(
@@ -2651,7 +2600,7 @@ function resetBattlefield() {
 
 
     /*
-     * Clear death event.
+     * Clear deaths.
      */
 
     legendaryCreatures.forEach(card => {
@@ -2671,7 +2620,7 @@ function resetBattlefield() {
 
 
     /*
-     * Clear saved state.
+     * Clear saved battlefield.
      */
 
     localStorage.removeItem(
@@ -2686,11 +2635,12 @@ function resetBattlefield() {
 }
 
 
-/* ==================================================
+/* =========================================
    INITIALIZE
-   ================================================== */
+   ========================================= */
 
 loadBattlefield();
+
 
 document.getElementById(
     "heartless-no"
@@ -2699,12 +2649,14 @@ document.getElementById(
     !heartlessSummoning
 );
 
+
 document.getElementById(
     "heartless-yes"
 ).classList.toggle(
     "active",
     heartlessSummoning
 );
+
 
 renderDeathList();
 

@@ -388,7 +388,7 @@ h2 {
 
 
 /* ==========================================
-   TOKEN OUTPUT
+   TOKEN RESULTS
    ========================================== */
 
 .token-result {
@@ -422,6 +422,17 @@ h2 {
 
     padding:
         6px 0;
+}
+
+
+.multiplier {
+
+    font-size: 24px;
+
+    text-align: center;
+
+    padding:
+        10px 0;
 }
 
 
@@ -911,7 +922,7 @@ class="total-number"
 
 
 <!-- ==========================================
-     EFFECTS
+     BATTLEFIELD EFFECTS
      ========================================== -->
 
 <div class="card">
@@ -991,8 +1002,7 @@ What Died?
 <div class="description">
 
 Select the legendary creatures that died during
-this event. Multiple creatures can be selected
-simultaneously.
+this event.
 
 </div>
 
@@ -1018,7 +1028,7 @@ class="death-list"
 
 
 <!-- ==========================================
-     RESULTS
+     TRIGGER RESULTS
      ========================================== -->
 
 <div class="card">
@@ -1135,14 +1145,77 @@ Total
 
 
 <!-- ==========================================
-     TOKEN OUTPUT
+     TOKEN RESULTS
      ========================================== -->
 
 <div class="card">
 
 
 <div class="result-label">
-TOKENS CREATED
+TOKEN CALCULATION
+</div>
+
+
+<div class="breakdown-row">
+
+<span>
+Base Ratadrabik tokens
+</span>
+
+<strong
+id="baseTokens"
+>
+0
+</strong>
+
+</div>
+
+
+<div class="breakdown-row">
+
+<span>
+Mondrak replacement
+</span>
+
+<strong
+id="mondrakMultiplier"
+>
+×1
+</strong>
+
+</div>
+
+
+<div class="breakdown-row">
+
+<span>
+Ojer Taq replacement
+</span>
+
+<strong
+id="ojerMultiplier"
+>
+×1
+</strong>
+
+</div>
+
+
+<div class="multiplier">
+
+Final multiplier:
+
+<strong
+id="finalMultiplier"
+>
+×1
+</strong>
+
+</div>
+
+
+<div class="result-label">
+ACTUAL TOKENS CREATED
 </div>
 
 
@@ -1179,8 +1252,10 @@ CLEAR DEATH EVENT
 
 <div class="info">
 
-Each Ratadrabik trigger creates a Zombie token
-copy of the specific legendary creature that died.
+Mondrak doubles tokens created under your control.
+Ojer Taq triples creature tokens created under
+your control. These replacement effects are
+calculated separately from Ratadrabik's triggers.
 
 </div>
 
@@ -1299,7 +1374,9 @@ function toggleHeartless() {
         );
 
 
-    if (heartlessSummoning) {
+    if (
+        heartlessSummoning
+    ) {
 
         button.textContent =
             "ON";
@@ -1543,7 +1620,7 @@ function filterDeaths() {
 
 
 /* ==================================================
-   READ NUMBER
+   NUMBER
    ================================================== */
 
 function getValue(id) {
@@ -1618,11 +1695,96 @@ function totalDeaths() {
 
 
 /* ==================================================
-   CALCULATE TRIGGERS
+   TOKEN REPLACEMENT MULTIPLIER
+   ================================================== */
+
+function calculateTokenMultiplier() {
+
+
+    const mondrak =
+        totalCopies(
+            "mondrak"
+        );
+
+
+    const ojer =
+        totalCopies(
+            "ojer"
+        );
+
+
+    /*
+     * Each Mondrak doubles.
+     *
+     * 0 Mondrak = ×1
+     * 1 Mondrak = ×2
+     * 2 Mondrak = ×4
+     */
+
+    const mondrakMultiplier =
+        Math.pow(
+            2,
+            mondrak
+        );
+
+
+    /*
+     * Each Ojer Taq triples.
+     *
+     * 0 Ojer = ×1
+     * 1 Ojer = ×3
+     * 2 Ojer = ×9
+     */
+
+    const ojerMultiplier =
+        Math.pow(
+            3,
+            ojer
+        );
+
+
+    const finalMultiplier =
+        mondrakMultiplier *
+        ojerMultiplier;
+
+
+    document.getElementById(
+        "mondrakMultiplier"
+    ).textContent =
+        "×" +
+        mondrakMultiplier;
+
+
+    document.getElementById(
+        "ojerMultiplier"
+    ).textContent =
+        "×" +
+        ojerMultiplier;
+
+
+    document.getElementById(
+        "finalMultiplier"
+    ).textContent =
+        "×" +
+        finalMultiplier;
+
+
+    return finalMultiplier;
+
+}
+
+
+
+/* ==================================================
+   MAIN CALCULATION
    ================================================== */
 
 function calculate() {
 
+
+    /* ------------------------------------------
+       BATTLEFIELD
+       ------------------------------------------ */
 
     const ratadrabik =
         totalCopies(
@@ -1659,16 +1821,19 @@ function calculate() {
     );
 
 
-    totalCopies(
-        "mondrak"
-    );
+
+    /* ------------------------------------------
+       TOKEN MULTIPLIERS
+       ------------------------------------------ */
+
+    const tokenMultiplier =
+        calculateTokenMultiplier();
 
 
-    totalCopies(
-        "ojer"
-    );
 
-
+    /* ------------------------------------------
+       DEATH EVENT
+       ------------------------------------------ */
 
     const deaths =
         totalDeaths();
@@ -1676,7 +1841,7 @@ function calculate() {
 
 
     /* ------------------------------------------
-       BASE
+       BASE TRIGGERS
        ------------------------------------------ */
 
     let baseTriggers = 0;
@@ -1748,7 +1913,7 @@ function calculate() {
 
 
     /* ------------------------------------------
-       TOTAL
+       TOTAL TRIGGERS
        ------------------------------------------ */
 
     const totalTriggers =
@@ -1768,7 +1933,21 @@ function calculate() {
 
 
     /* ------------------------------------------
-       DISPLAY
+       BASE TOKENS
+       ------------------------------------------ */
+
+    const baseTokens =
+        totalTriggers;
+
+
+    const actualTokens =
+        baseTokens *
+        tokenMultiplier;
+
+
+
+    /* ------------------------------------------
+       DISPLAY TRIGGERS
        ------------------------------------------ */
 
     document.getElementById(
@@ -1820,13 +1999,27 @@ function calculate() {
 
 
 
-    /*
-     * Each individual creature gets the
-     * same number of Ratadrabik triggers
-     * for this event.
-     */
+    /* ------------------------------------------
+       DISPLAY TOKENS
+       ------------------------------------------ */
 
-    updateTokenOutput();
+    document.getElementById(
+        "baseTokens"
+    ).textContent =
+        baseTokens;
+
+
+    document.getElementById(
+        "tokenResult"
+    ).textContent =
+        actualTokens;
+
+
+
+    updateTokenOutput(
+        totalTriggers,
+        tokenMultiplier
+    );
 
 }
 
@@ -1836,7 +2029,11 @@ function calculate() {
    TOKEN OUTPUT
    ================================================== */
 
-function updateTokenOutput() {
+function updateTokenOutput(
+totalTriggers,
+tokenMultiplier
+) {
+
 
     const output =
         document.getElementById(
@@ -1847,35 +2044,17 @@ function updateTokenOutput() {
     output.innerHTML = "";
 
 
-    const totalDeaths =
-        Object.values(
-            deathCounts
-        ).reduce(
-            (
-                total,
-                count
-            ) =>
-                total + count,
-            0
-        );
+    const deaths =
+        totalDeaths();
 
 
     if (
-        totalDeaths === 0
+        deaths === 0
     ) {
 
         return;
 
     }
-
-
-    const totalTriggers =
-        Number(
-            document.getElementById(
-                "totalTriggers"
-            ).textContent
-        );
-
 
 
     legendaryCreatures.forEach(
@@ -1896,16 +2075,21 @@ function updateTokenOutput() {
 
 
         /*
-         * Each copy of this creature
-         * receives the full trigger count.
+         * Each individual creature gets
+         * the complete trigger count.
          */
 
-        const tokens =
+        const baseTokens =
             died *
             (
                 totalTriggers /
-                totalDeaths
+                deaths
             );
+
+
+        const actualTokens =
+            baseTokens *
+            tokenMultiplier;
 
 
         const line =
@@ -1925,7 +2109,7 @@ function updateTokenOutput() {
             </span>
 
             <strong>
-                ${tokens}
+                ${actualTokens}
             </strong>`;
 
 
@@ -1991,11 +2175,14 @@ function applyEvent() {
         );
 
 
+    const tokenMultiplier =
+        calculateTokenMultiplier();
 
-    /*
-     * Remove the original permanents
-     * that died.
-     */
+
+
+    /* ------------------------------------------
+       REMOVE ORIGINAL CREATURES
+       ------------------------------------------ */
 
     Object.keys(
         deathCounts
@@ -2026,10 +2213,9 @@ function applyEvent() {
 
 
 
-    /*
-     * Create the appropriate number
-     * of token copies.
-     */
+    /* ------------------------------------------
+       ADD TOKEN COPIES
+       ------------------------------------------ */
 
     Object.keys(
         deathCounts
@@ -2050,7 +2236,7 @@ function applyEvent() {
         }
 
 
-        const tokens =
+        const baseTokens =
             died *
             (
                 totalTriggers /
@@ -2058,9 +2244,14 @@ function applyEvent() {
             );
 
 
+        const actualTokens =
+            baseTokens *
+            tokenMultiplier;
+
+
         addTokenCopies(
             card,
-            tokens
+            actualTokens
         );
 
     }
@@ -2068,9 +2259,9 @@ function applyEvent() {
 
 
 
-    /*
-     * Clear the event.
-     */
+    /* ------------------------------------------
+       CLEAR EVENT
+       ------------------------------------------ */
 
     clearDeathEvent();
 
@@ -2079,7 +2270,7 @@ function applyEvent() {
 
 
 /* ==================================================
-   FIELD MAP
+   BATTLEFIELD MAP
    ================================================== */
 
 const battlefieldMap = {
@@ -2156,7 +2347,7 @@ amount
 
 
 /* ==================================================
-   ADD TOKEN COPIES
+   ADD TOKEN
    ================================================== */
 
 function addTokenCopies(
@@ -2199,7 +2390,7 @@ amount
 
 
 /* ==================================================
-   CLEAR EVENT
+   CLEAR DEATH EVENT
    ================================================== */
 
 function clearDeathEvent() {
@@ -2215,7 +2406,6 @@ function clearDeathEvent() {
 
 
     renderDeathList();
-
 
     calculate();
 

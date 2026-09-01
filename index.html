@@ -117,7 +117,35 @@ h2 {
 
 
 /* =========================================
-   BATTLEFIELD OPTIONS
+   ROAMING THRONE INDIVIDUAL TYPES
+   ========================================= */
+
+.throne-type-list {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #374151;
+}
+
+.throne-type-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 13px;
+}
+
+.throne-label {
+    color: #d1d5db;
+}
+
+.throne-type-row select {
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   HEARTLESS SUMMONING
    ========================================= */
 
 .option-row {
@@ -424,6 +452,10 @@ select {
         font-size: 58px;
     }
 
+    .throne-type-row {
+        font-size: 12px;
+    }
+
 }
 
 </style>
@@ -655,7 +687,7 @@ class="total-number"
 Roaming Throne
 
 <span class="card-note">
-Chosen creature type
+Each Throne has its own chosen type
 </span>
 
 </div>
@@ -687,6 +719,13 @@ class="total-number"
 0
 </div>
 
+</div>
+
+
+<div
+id="throne-type-list"
+class="throne-type-list"
+>
 </div>
 
 
@@ -818,40 +857,6 @@ class="total-number"
 >
 0
 </div>
-
-</div>
-
-
-<!-- ROAMING THRONE TYPE -->
-
-<div class="option-row">
-
-<label for="throne-type">
-Roaming Throne Type
-</label>
-
-<select
-id="throne-type"
-onchange="calculate()"
->
-
-<option value="Zombie">
-Zombie
-</option>
-
-<option value="Wizard">
-Wizard
-</option>
-
-<option value="Human">
-Human
-</option>
-
-<option value="Other">
-Other
-</option>
-
-</select>
 
 </div>
 
@@ -1024,7 +1029,7 @@ state-based actions or creature survival.
 
 
 /* =========================================
-   LEGENDARY CREATURE LIST
+   LEGENDARY CREATURES
    ========================================= */
 
 const legendaryCreatures = [
@@ -1111,8 +1116,19 @@ const STORAGE_KEY =
 let heartlessSummoning = false;
 
 
+/*
+ * Every individual Roaming Throne
+ * gets its own chosen creature type.
+ *
+ * Index 0 = first original Throne
+ * followed by token Thrones.
+ */
+
+let roamingThroneTypes = [];
+
+
 /* =========================================
-   SELECT NUMBER FIELD
+   SELECT FIELD
    ========================================= */
 
 function selectField(field) {
@@ -1123,7 +1139,7 @@ function selectField(field) {
 
 
 /* =========================================
-   GET NUMBER
+   GET VALUE
    ========================================= */
 
 function getValue(id) {
@@ -1270,14 +1286,12 @@ function saveBattlefield() {
     });
 
 
-    saved["throne-type"] =
-        document.getElementById(
-            "throne-type"
-        ).value;
-
-
     saved["heartless-summoning"] =
         heartlessSummoning;
+
+
+    saved["roaming-throne-types"] =
+        roamingThroneTypes;
 
 
     localStorage.setItem(
@@ -1333,18 +1347,6 @@ function loadBattlefield() {
 
 
         if (
-            saved["throne-type"]
-        ) {
-
-            document.getElementById(
-                "throne-type"
-            ).value =
-                saved["throne-type"];
-
-        }
-
-
-        if (
             saved[
                 "heartless-summoning"
             ] !== undefined
@@ -1359,6 +1361,22 @@ function loadBattlefield() {
 
         }
 
+
+        if (
+            Array.isArray(
+                saved[
+                    "roaming-throne-types"
+                ]
+            )
+        ) {
+
+            roamingThroneTypes =
+                saved[
+                    "roaming-throne-types"
+                ];
+
+        }
+
     }
     catch (error) {
 
@@ -1368,6 +1386,270 @@ function loadBattlefield() {
         );
 
     }
+
+}
+
+
+/* =========================================
+   THRONE TYPE OPTIONS
+   ========================================= */
+
+function throneTypeOptions() {
+
+    return [
+
+        "Zombie",
+        "Wizard",
+        "Human",
+        "Other"
+
+    ];
+
+}
+
+
+/* =========================================
+   RENDER INDIVIDUAL THRONE TYPES
+   ========================================= */
+
+function renderRoamingThroneTypes() {
+
+    const container =
+        document.getElementById(
+            "throne-type-list"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const originalCount =
+        getValue(
+            "throne-original"
+        );
+
+
+    const tokenCount =
+        getValue(
+            "throne-token"
+        );
+
+
+    const total =
+        originalCount +
+        tokenCount;
+
+
+    /*
+     * Preserve existing type choices
+     * where possible.
+     */
+
+    while (
+        roamingThroneTypes.length < total
+    ) {
+
+        roamingThroneTypes.push(
+            "Zombie"
+        );
+
+    }
+
+
+    if (
+        roamingThroneTypes.length > total
+    ) {
+
+        roamingThroneTypes =
+            roamingThroneTypes.slice(
+                0,
+                total
+            );
+
+    }
+
+
+    if (
+        total === 0
+    ) {
+
+        return;
+
+    }
+
+
+    for (
+        let i = 0;
+        i < total;
+        i++
+    ) {
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "throne-type-row";
+
+
+        const label =
+            document.createElement(
+                "span"
+            );
+
+
+        label.className =
+            "throne-label";
+
+
+        if (
+            i < originalCount
+        ) {
+
+            label.textContent =
+                `Roaming Throne Original #${
+                    i + 1
+                }`;
+
+        }
+        else {
+
+            const tokenNumber =
+                i -
+                originalCount +
+                1;
+
+
+            label.textContent =
+                `Roaming Throne Token #${
+                    tokenNumber
+                }`;
+
+        }
+
+
+        const select =
+            document.createElement(
+                "select"
+            );
+
+
+        throneTypeOptions()
+            .forEach(type => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    type;
+
+
+                option.textContent =
+                    type;
+
+
+                if (
+                    roamingThroneTypes[i] ===
+                    type
+                ) {
+
+                    option.selected =
+                        true;
+
+                }
+
+
+                select.appendChild(
+                    option
+                );
+
+            });
+
+
+        select.onchange =
+            function() {
+
+                roamingThroneTypes[i] =
+                    this.value;
+
+                calculate();
+
+            };
+
+
+        row.appendChild(
+            label
+        );
+
+
+        row.appendChild(
+            select
+        );
+
+
+        container.appendChild(
+            row
+        );
+
+    }
+
+
+    saveBattlefield();
+
+}
+
+
+/* =========================================
+   ROAMING THRONE TRIGGER COUNT
+   ========================================= */
+
+function countApplicableThrones() {
+
+    const ratadrabik =
+        totalCopies(
+            "ratadrabik"
+        );
+
+
+    if (
+        ratadrabik <= 0
+    ) {
+
+        return 0;
+
+    }
+
+
+    let count = 0;
+
+
+    roamingThroneTypes
+        .forEach(type => {
+
+            /*
+             * Ratadrabik is both:
+             * - Zombie
+             * - Wizard
+             */
+
+            if (
+                type === "Zombie" ||
+                type === "Wizard"
+            ) {
+
+                count++;
+
+            }
+
+        });
+
+
+    return count;
 
 }
 
@@ -1678,7 +1960,9 @@ function filterDeaths() {
 function delneyApplies() {
 
     const delney =
-        totalCopies("delney");
+        totalCopies(
+            "delney"
+        );
 
 
     if (
@@ -1689,11 +1973,6 @@ function delneyApplies() {
 
     }
 
-
-    /*
-     * Delney checks Ratadrabik's
-     * current power.
-     */
 
     return (
         ratadrabikCurrentPower() <= 2
@@ -1709,7 +1988,9 @@ function delneyApplies() {
 function triggersPerDeath() {
 
     const ratadrabik =
-        totalCopies("ratadrabik");
+        totalCopies(
+            "ratadrabik"
+        );
 
 
     if (
@@ -1721,16 +2002,6 @@ function triggersPerDeath() {
     }
 
 
-    /*
-     * One Ratadrabik creates one
-     * trigger for each qualifying
-     * legendary creature that died.
-     *
-     * This function calculates the
-     * number of Ratadrabik triggers
-     * produced by ONE qualifying death.
-     */
-
     let triggers =
         ratadrabik;
 
@@ -1741,7 +2012,9 @@ function triggersPerDeath() {
 
     triggers +=
         ratadrabik *
-        totalCopies("teysa");
+        totalCopies(
+            "teysa"
+        );
 
 
     /*
@@ -1750,7 +2023,9 @@ function triggersPerDeath() {
 
     triggers +=
         ratadrabik *
-        totalCopies("drivnod");
+        totalCopies(
+            "drivnod"
+        );
 
 
     /*
@@ -1759,44 +2034,26 @@ function triggersPerDeath() {
 
     triggers +=
         ratadrabik *
-        totalCopies("gandalf");
+        totalCopies(
+            "gandalf"
+        );
 
 
     /*
      * Roaming Throne
      *
-     * Ratadrabik is both a Zombie
-     * and a Wizard.
+     * Each individual Throne that
+     * chose Zombie or Wizard adds
+     * another Ratadrabik trigger.
      */
 
-    const throneType =
-        document.getElementById(
-            "throne-type"
-        ).value;
-
-
-    const throneApplies =
-        throneType === "Zombie" ||
-        throneType === "Wizard";
-
-
-    if (
-        throneApplies
-    ) {
-
-        triggers +=
-            ratadrabik *
-            totalCopies("throne");
-
-    }
+    triggers +=
+        ratadrabik *
+        countApplicableThrones();
 
 
     /*
      * Delney
-     *
-     * Heartless Summoning changes
-     * Ratadrabik from 3 power to 2 power,
-     * making Delney applicable.
      */
 
     if (
@@ -1805,7 +2062,9 @@ function triggersPerDeath() {
 
         triggers +=
             ratadrabik *
-            totalCopies("delney");
+            totalCopies(
+                "delney"
+            );
 
     }
 
@@ -1833,65 +2092,62 @@ function calculateRatadrabikTriggers() {
         );
 
 
+    const ratadrabik =
+        totalCopies(
+            "ratadrabik"
+        );
+
+
     const perDeath =
         triggersPerDeath();
-
-
-    const total =
-        qualifyingDeaths *
-        perDeath;
 
 
     return {
 
         base:
             qualifyingDeaths *
-            totalCopies("ratadrabik"),
+            ratadrabik,
 
         teysa:
             qualifyingDeaths *
-            totalCopies("ratadrabik") *
-            totalCopies("teysa"),
+            ratadrabik *
+            totalCopies(
+                "teysa"
+            ),
 
         drivnod:
             qualifyingDeaths *
-            totalCopies("ratadrabik") *
-            totalCopies("drivnod"),
+            ratadrabik *
+            totalCopies(
+                "drivnod"
+            ),
 
         gandalf:
             qualifyingDeaths *
-            totalCopies("ratadrabik") *
-            totalCopies("gandalf"),
+            ratadrabik *
+            totalCopies(
+                "gandalf"
+            ),
 
         throne:
-            (
-                (
-                    document.getElementById(
-                        "throne-type"
-                    ).value === "Zombie"
-                    ||
-                    document.getElementById(
-                        "throne-type"
-                    ).value === "Wizard"
-                )
-            )
-            ?
             qualifyingDeaths *
-            totalCopies("ratadrabik") *
-            totalCopies("throne")
-            :
-            0,
+            ratadrabik *
+            countApplicableThrones(),
 
         delney:
             delneyApplies()
             ?
             qualifyingDeaths *
-            totalCopies("ratadrabik") *
-            totalCopies("delney")
+            ratadrabik *
+            totalCopies(
+                "delney"
+            )
             :
             0,
 
-        total
+        total:
+            qualifyingDeaths *
+            perDeath
 
     };
 
@@ -1905,11 +2161,15 @@ function calculateRatadrabikTriggers() {
 function calculateTokenMultiplier() {
 
     const mondrak =
-        totalCopies("mondrak");
+        totalCopies(
+            "mondrak"
+        );
 
 
     const ojer =
-        totalCopies("ojer");
+        totalCopies(
+            "ojer"
+        );
 
 
     const mondrakMultiplier =
@@ -2024,7 +2284,9 @@ function displayBreakdown(
             </strong>`;
 
 
-        container.appendChild(row);
+        container.appendChild(
+            row
+        );
 
     });
 
@@ -2096,14 +2358,6 @@ function updateTokenOutput(
 
     }
 
-
-    /*
-     * Every qualifying death produces
-     * the same number of Ratadrabik
-     * triggers, so this gives us the
-     * exact number of tokens created
-     * for each individual death.
-     */
 
     const tokensPerDeath =
         (
@@ -2181,6 +2435,9 @@ function calculate() {
     totalCopies("delney");
     totalCopies("mondrak");
     totalCopies("ojer");
+
+
+    renderRoamingThroneTypes();
 
 
     const result =
@@ -2319,12 +2576,6 @@ function addTokenCopies(
         battlefieldMap[card];
 
 
-    /*
-     * If the card isn't relevant to
-     * future token calculations, don't
-     * add it to the Battlefield section.
-     */
-
     if (!field) {
 
         return;
@@ -2411,7 +2662,25 @@ function applyEvent() {
 
 
     /*
-     * Remove relevant original
+     * Save the number of Thrones that
+     * currently exist before removing
+     * any that died.
+     */
+
+    const oldThroneOriginals =
+        getValue(
+            "throne-original"
+        );
+
+
+    const oldThroneTokens =
+        getValue(
+            "throne-token"
+        );
+
+
+    /*
+     * Remove original relevant
      * permanents that died.
      */
 
@@ -2441,20 +2710,12 @@ function applyEvent() {
 
 
     /*
-     * If there were no qualifying
-     * deaths, there are no Ratadrabik
-     * tokens to create.
+     * Add relevant Zombie copies.
      */
 
     if (
         qualifyingDeaths > 0
     ) {
-
-        /*
-         * Calculate the exact number
-         * of tokens created for each
-         * qualifying death.
-         */
 
         const tokensPerDeath =
             (
@@ -2463,11 +2724,6 @@ function applyEvent() {
             ) *
             multipliers.final;
 
-
-        /*
-         * Add ONLY relevant Zombie
-         * copies to the Battlefield.
-         */
 
         Object.keys(
             deathCounts
@@ -2500,6 +2756,17 @@ function applyEvent() {
 
         });
 
+
+        /*
+         * If Roaming Throne died,
+         * its Zombie copies need their
+         * own independent chosen types.
+         *
+         * Ratadrabik-created Throne
+         * copies can be assigned their
+         * own type later.
+         */
+
     }
 
 
@@ -2508,6 +2775,15 @@ function applyEvent() {
      */
 
     clearDeathEvent();
+
+
+    /*
+     * Rebuild the individual Throne
+     * type list after the battlefield
+     * has changed.
+     */
+
+    renderRoamingThroneTypes();
 
 }
 
@@ -2560,29 +2836,15 @@ function resetBattlefield() {
     });
 
 
-    /*
-     * Ratadrabik begins at one.
-     */
-
     document.getElementById(
         "ratadrabik-original"
     ).value = "1";
 
 
-    /*
-     * Reset Roaming Throne.
-     */
-
-    document.getElementById(
-        "throne-type"
-    ).value = "Zombie";
-
-
-    /*
-     * Reset Heartless Summoning.
-     */
-
     heartlessSummoning = false;
+
+
+    roamingThroneTypes = [];
 
 
     document.getElementById(
@@ -2599,10 +2861,6 @@ function resetBattlefield() {
     );
 
 
-    /*
-     * Clear deaths.
-     */
-
     legendaryCreatures.forEach(card => {
 
         deathCounts[card] = 0;
@@ -2610,18 +2868,10 @@ function resetBattlefield() {
     });
 
 
-    /*
-     * Clear search.
-     */
-
     document.getElementById(
         "deathSearch"
     ).value = "";
 
-
-    /*
-     * Clear saved battlefield.
-     */
 
     localStorage.removeItem(
         STORAGE_KEY

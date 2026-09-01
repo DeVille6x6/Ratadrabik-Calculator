@@ -23,11 +23,9 @@
 body {
 
     margin: 0;
-
     padding: 12px;
 
     background: #111827;
-
     color: #f9fafb;
 
     font-family:
@@ -40,7 +38,6 @@ body {
 .container {
 
     max-width: 700px;
-
     margin: auto;
 }
 
@@ -48,18 +45,14 @@ body {
 h1 {
 
     text-align: center;
-
-    margin:
-        8px 0 4px;
+    margin: 8px 0 4px;
 }
 
 
 .subtitle {
 
     text-align: center;
-
     color: #9ca3af;
-
     margin-bottom: 20px;
 }
 
@@ -67,11 +60,8 @@ h1 {
 .card {
 
     background: #1f2937;
-
     border-radius: 12px;
-
     padding: 18px;
-
     margin-bottom: 18px;
 }
 
@@ -79,7 +69,6 @@ h1 {
 h2 {
 
     margin-top: 0;
-
     font-size: 20px;
 }
 
@@ -87,11 +76,8 @@ h2 {
 .description {
 
     color: #9ca3af;
-
     font-size: 14px;
-
     line-height: 1.5;
-
     margin-bottom: 15px;
 }
 
@@ -120,25 +106,20 @@ h2 {
 .battlefield-header {
 
     color: #9ca3af;
-
     font-size: 11px;
-
     text-align: center;
-
     padding-bottom: 6px;
 }
 
 
 .battlefield-header div:first-child {
-
     text-align: left;
 }
 
 
 .battlefield-row {
 
-    padding:
-        9px 0;
+    padding: 9px 0;
 
     border-bottom:
         1px solid #374151;
@@ -148,7 +129,6 @@ h2 {
 .card-name {
 
     font-weight: bold;
-
     font-size: 14px;
 }
 
@@ -160,7 +140,6 @@ h2 {
     padding: 7px;
 
     background: #111827;
-
     color: white;
 
     border:
@@ -196,8 +175,7 @@ h2 {
 
     align-items: center;
 
-    padding:
-        10px 0;
+    padding: 10px 0;
 
     border-bottom:
         1px solid #374151;
@@ -207,7 +185,6 @@ h2 {
 .toggle {
 
     width: 55px;
-
     height: 30px;
 
     border-radius: 20px;
@@ -223,7 +200,6 @@ h2 {
 
 
 .toggle.active {
-
     background: #166534;
 }
 
@@ -241,7 +217,6 @@ h2 {
     margin-bottom: 12px;
 
     background: #111827;
-
     color: white;
 
     border:
@@ -289,7 +264,6 @@ h2 {
 
 
 .death-name {
-
     font-size: 14px;
 }
 
@@ -311,7 +285,6 @@ h2 {
     border-radius: 7px;
 
     width: 38px;
-
     height: 36px;
 
     font-size: 20px;
@@ -323,13 +296,11 @@ h2 {
 
 
 .minus {
-
     background: #374151;
 }
 
 
 .plus {
-
     background: #4b5563;
 }
 
@@ -505,13 +476,11 @@ h2 {
 @media (max-width: 500px) {
 
     body {
-
         padding: 8px;
     }
 
 
     .card {
-
         padding: 14px;
     }
 
@@ -528,7 +497,6 @@ h2 {
 
 
     .number-input {
-
         width: 48px;
     }
 
@@ -571,7 +539,8 @@ Battlefield
 <div class="description">
 
 Enter the permanents currently on your battlefield.
-Ratadrabik-created copies go in the Token column.
+The Token column represents Ratadrabik-created
+Zombie copies.
 
 </div>
 
@@ -606,7 +575,6 @@ Total
 Ratadrabik of Urborg
 </div>
 
-
 <input
 id="ratadrabik-original"
 class="number-input"
@@ -616,7 +584,6 @@ value="1"
 onchange="calculate()"
 >
 
-
 <input
 id="ratadrabik-token"
 class="number-input"
@@ -625,7 +592,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="ratadrabik-total"
@@ -646,7 +612,6 @@ class="total-number"
 Teysa Karlov
 </div>
 
-
 <input
 id="teysa-original"
 class="number-input"
@@ -656,7 +621,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="teysa-token"
 class="number-input"
@@ -665,7 +629,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="teysa-total"
@@ -686,7 +649,6 @@ class="total-number"
 Drivnod, Carnage Dominus
 </div>
 
-
 <input
 id="drivnod-original"
 class="number-input"
@@ -696,7 +658,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="drivnod-token"
 class="number-input"
@@ -705,7 +666,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="drivnod-total"
@@ -726,7 +686,6 @@ class="total-number"
 Gandalf the White
 </div>
 
-
 <input
 id="gandalf-original"
 class="number-input"
@@ -736,7 +695,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="gandalf-token"
 class="number-input"
@@ -745,7 +703,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="gandalf-total"
@@ -766,7 +723,6 @@ class="total-number"
 Roaming Throne
 </div>
 
-
 <input
 id="throne-original"
 class="number-input"
@@ -776,7 +732,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="throne-token"
 class="number-input"
@@ -785,7 +740,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="throne-total"
@@ -806,7 +760,6 @@ class="total-number"
 Delney, Streetwise Lookout
 </div>
 
-
 <input
 id="delney-original"
 class="number-input"
@@ -816,7 +769,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="delney-token"
 class="number-input"
@@ -825,7 +777,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="delney-total"
@@ -846,7 +797,6 @@ class="total-number"
 Mondrak, Glory Dominus
 </div>
 
-
 <input
 id="mondrak-original"
 class="number-input"
@@ -856,7 +806,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="mondrak-token"
 class="number-input"
@@ -865,7 +814,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="mondrak-total"
@@ -878,14 +826,13 @@ class="total-number"
 
 
 
-<!-- OJER -->
+<!-- OJER TAQ -->
 
 <div class="battlefield-row">
 
 <div class="card-name">
 Ojer Taq, Deepest Foundation
 </div>
-
 
 <input
 id="ojer-original"
@@ -896,7 +843,6 @@ value="0"
 onchange="calculate()"
 >
 
-
 <input
 id="ojer-token"
 class="number-input"
@@ -905,7 +851,6 @@ min="0"
 value="0"
 onchange="calculate()"
 >
-
 
 <div
 id="ojer-total"
@@ -1050,7 +995,7 @@ class="result"
 <div class="breakdown-row">
 
 <span>
-Original triggers
+Base Ratadrabik triggers
 </span>
 
 <span id="baseTriggers">
@@ -1130,7 +1075,7 @@ class="breakdown-row breakdown-total"
 >
 
 <span>
-Total
+Total Ratadrabik triggers
 </span>
 
 <span id="totalTriggers">
@@ -1159,7 +1104,7 @@ TOKEN CALCULATION
 <div class="breakdown-row">
 
 <span>
-Base Ratadrabik tokens
+Base tokens
 </span>
 
 <strong
@@ -1174,7 +1119,7 @@ id="baseTokens"
 <div class="breakdown-row">
 
 <span>
-Mondrak replacement
+Mondrak multiplier
 </span>
 
 <strong
@@ -1189,7 +1134,7 @@ id="mondrakMultiplier"
 <div class="breakdown-row">
 
 <span>
-Ojer Taq replacement
+Ojer Taq multiplier
 </span>
 
 <strong
@@ -1203,7 +1148,7 @@ id="ojerMultiplier"
 
 <div class="multiplier">
 
-Final multiplier:
+Final token multiplier:
 
 <strong
 id="finalMultiplier"
@@ -1252,10 +1197,9 @@ CLEAR DEATH EVENT
 
 <div class="info">
 
-Mondrak doubles tokens created under your control.
-Ojer Taq triples creature tokens created under
-your control. These replacement effects are
-calculated separately from Ratadrabik's triggers.
+Ratadrabik creates Zombie token copies of the
+legendary creatures that died. Token replacement
+effects are calculated separately.
 
 </div>
 
@@ -1620,7 +1564,7 @@ function filterDeaths() {
 
 
 /* ==================================================
-   NUMBER
+   GET NUMBER
    ================================================== */
 
 function getValue(id) {
@@ -1695,7 +1639,7 @@ function totalDeaths() {
 
 
 /* ==================================================
-   TOKEN REPLACEMENT MULTIPLIER
+   TOKEN MULTIPLIERS
    ================================================== */
 
 function calculateTokenMultiplier() {
@@ -1713,28 +1657,12 @@ function calculateTokenMultiplier() {
         );
 
 
-    /*
-     * Each Mondrak doubles.
-     *
-     * 0 Mondrak = ×1
-     * 1 Mondrak = ×2
-     * 2 Mondrak = ×4
-     */
-
     const mondrakMultiplier =
         Math.pow(
             2,
             mondrak
         );
 
-
-    /*
-     * Each Ojer Taq triples.
-     *
-     * 0 Ojer = ×1
-     * 1 Ojer = ×3
-     * 2 Ojer = ×9
-     */
 
     const ojerMultiplier =
         Math.pow(
@@ -1748,28 +1676,18 @@ function calculateTokenMultiplier() {
         ojerMultiplier;
 
 
-    document.getElementById(
-        "mondrakMultiplier"
-    ).textContent =
-        "×" +
-        mondrakMultiplier;
+    return {
 
+        mondrak:
+            mondrakMultiplier,
 
-    document.getElementById(
-        "ojerMultiplier"
-    ).textContent =
-        "×" +
-        ojerMultiplier;
+        ojer:
+            ojerMultiplier,
 
+        final:
+            finalMultiplier
 
-    document.getElementById(
-        "finalMultiplier"
-    ).textContent =
-        "×" +
-        finalMultiplier;
-
-
-    return finalMultiplier;
+    };
 
 }
 
@@ -1792,21 +1710,39 @@ function calculate() {
         );
 
 
-    const teysa =
-        totalCopies(
-            "teysa"
+    const teysaOriginal =
+        getValue(
+            "teysa-original"
         );
 
 
-    const drivnod =
-        totalCopies(
-            "drivnod"
+    const teysaToken =
+        getValue(
+            "teysa-token"
         );
 
 
-    const gandalf =
-        totalCopies(
-            "gandalf"
+    const drivnodOriginal =
+        getValue(
+            "drivnod-original"
+        );
+
+
+    const drivnodToken =
+        getValue(
+            "drivnod-token"
+        );
+
+
+    const gandalfOriginal =
+        getValue(
+            "gandalf-original"
+        );
+
+
+    const gandalfToken =
+        getValue(
+            "gandalf-token"
         );
 
 
@@ -1823,15 +1759,6 @@ function calculate() {
 
 
     /* ------------------------------------------
-       TOKEN MULTIPLIERS
-       ------------------------------------------ */
-
-    const tokenMultiplier =
-        calculateTokenMultiplier();
-
-
-
-    /* ------------------------------------------
        DEATH EVENT
        ------------------------------------------ */
 
@@ -1841,46 +1768,73 @@ function calculate() {
 
 
     /* ------------------------------------------
-       BASE TRIGGERS
+       BASE RATADRABIK TRIGGERS
        ------------------------------------------ */
 
-    let baseTriggers = 0;
-
-
-    if (
+    const baseTriggers =
         ratadrabik > 0
-    ) {
-
-        baseTriggers =
-            deaths;
-
-    }
+            ? deaths
+            : 0;
 
 
 
     /* ------------------------------------------
-       ADDITIONAL TRIGGERS
+       TEYSA
        ------------------------------------------ */
 
     const teysaBonus =
-        deaths *
-        teysa;
 
+        deaths *
+        (
+            teysaOriginal +
+            teysaToken
+        );
+
+
+
+    /* ------------------------------------------
+       DRIVNOD
+       ------------------------------------------ */
 
     const drivnodBonus =
-        deaths *
-        drivnod;
 
+        deaths *
+        (
+            drivnodOriginal +
+            drivnodToken
+        );
+
+
+
+    /* ------------------------------------------
+       GANDALF
+       ------------------------------------------ */
 
     const gandalfBonus =
+
         deaths *
-        gandalf;
+        (
+            gandalfOriginal +
+            gandalfToken
+        );
 
 
 
     /* ------------------------------------------
        ROAMING THRONE
        ------------------------------------------ */
+
+    /*
+     * A Ratadrabik token is a Zombie.
+     *
+     * For the current engine, Throne is only
+     * applied to relevant Zombie token copies.
+     *
+     * We are deliberately keeping this separate
+     * so the recursive trigger interaction can
+     * be modeled precisely in the next engine
+     * revision.
+     */
 
     const throneType =
         document.getElementById(
@@ -1896,8 +1850,13 @@ function calculate() {
     ) {
 
         throneBonus =
+
             deaths *
-            throne;
+            (
+                teysaToken +
+                drivnodToken +
+                gandalfToken
+            );
 
     }
 
@@ -1933,8 +1892,12 @@ function calculate() {
 
 
     /* ------------------------------------------
-       BASE TOKENS
+       TOKEN MULTIPLIERS
        ------------------------------------------ */
+
+    const multipliers =
+        calculateTokenMultiplier();
+
 
     const baseTokens =
         totalTriggers;
@@ -1942,7 +1905,7 @@ function calculate() {
 
     const actualTokens =
         baseTokens *
-        tokenMultiplier;
+        multipliers.final;
 
 
 
@@ -2000,13 +1963,34 @@ function calculate() {
 
 
     /* ------------------------------------------
-       DISPLAY TOKENS
+       DISPLAY TOKEN CALCULATION
        ------------------------------------------ */
 
     document.getElementById(
         "baseTokens"
     ).textContent =
         baseTokens;
+
+
+    document.getElementById(
+        "mondrakMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.mondrak;
+
+
+    document.getElementById(
+        "ojerMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.ojer;
+
+
+    document.getElementById(
+        "finalMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.final;
 
 
     document.getElementById(
@@ -2018,7 +2002,7 @@ function calculate() {
 
     updateTokenOutput(
         totalTriggers,
-        tokenMultiplier
+        multipliers.final
     );
 
 }
@@ -2075,11 +2059,12 @@ tokenMultiplier
 
 
         /*
-         * Each individual creature gets
-         * the complete trigger count.
+         * Each creature receives the number
+         * of triggers associated with it.
          */
 
-        const baseTokens =
+        const creatureTriggers =
+
             died *
             (
                 totalTriggers /
@@ -2088,7 +2073,8 @@ tokenMultiplier
 
 
         const actualTokens =
-            baseTokens *
+
+            creatureTriggers *
             tokenMultiplier;
 
 
@@ -2175,13 +2161,13 @@ function applyEvent() {
         );
 
 
-    const tokenMultiplier =
+    const multipliers =
         calculateTokenMultiplier();
 
 
 
     /* ------------------------------------------
-       REMOVE ORIGINAL CREATURES
+       REMOVE DEAD ORIGINALS
        ------------------------------------------ */
 
     Object.keys(
@@ -2214,7 +2200,7 @@ function applyEvent() {
 
 
     /* ------------------------------------------
-       ADD TOKEN COPIES
+       ADD CREATED TOKENS
        ------------------------------------------ */
 
     Object.keys(
@@ -2236,7 +2222,8 @@ function applyEvent() {
         }
 
 
-        const baseTokens =
+        const creatureTriggers =
+
             died *
             (
                 totalTriggers /
@@ -2245,8 +2232,9 @@ function applyEvent() {
 
 
         const actualTokens =
-            baseTokens *
-            tokenMultiplier;
+
+            creatureTriggers *
+            multipliers.final;
 
 
         addTokenCopies(
@@ -2347,7 +2335,7 @@ amount
 
 
 /* ==================================================
-   ADD TOKEN
+   ADD TOKEN COPIES
    ================================================== */
 
 function addTokenCopies(

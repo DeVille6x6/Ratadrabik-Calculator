@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ratadrabik Token Calculator</title>
 
 <style>
@@ -117,10 +118,11 @@ h2 {
 
 
 /* ================================
-   THRONE
+   BATTLEFIELD OPTIONS
    ================================ */
 
-.throne-controls {
+.throne-controls,
+.heartless-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -136,6 +138,27 @@ select {
     border: 1px solid #4b5563;
     border-radius: 6px;
     padding: 8px 10px;
+}
+
+.toggle-group {
+    display: flex;
+    gap: 6px;
+}
+
+.toggle-button {
+    background: #111827;
+    color: #9ca3af;
+    border: 1px solid #4b5563;
+    border-radius: 6px;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.toggle-button.active {
+    background: #166534;
+    color: white;
+    border-color: #22c55e;
 }
 
 
@@ -473,7 +496,7 @@ Total
 Ratadrabik of Urborg
 
 <span class="card-note">
-Zombie • Wizard
+Zombie • Wizard • 3/3
 </span>
 
 </div>
@@ -698,7 +721,7 @@ class="total-number"
 Delney, Streetwise Lookout
 
 <span class="card-note">
-Currently no effect on Ratadrabik
+Can double Ratadrabik when power ≤2
 </span>
 
 </div>
@@ -824,10 +847,12 @@ class="total-number"
 
 
 
+<!-- ROAMING THRONE TYPE -->
+
 <div class="throne-controls">
 
 <label for="throne-type">
-Roaming Throne type
+Roaming Throne Type
 </label>
 
 <select
@@ -852,6 +877,38 @@ Other
 </option>
 
 </select>
+
+</div>
+
+
+
+<!-- HEARTLESS SUMMONING -->
+
+<div class="heartless-controls">
+
+<label>
+Heartless Summoning
+</label>
+
+<div class="toggle-group">
+
+<button
+id="heartless-no"
+class="toggle-button active"
+onclick="setHeartless(false)"
+>
+No
+</button>
+
+<button
+id="heartless-yes"
+class="toggle-button"
+onclick="setHeartless(true)"
+>
+Yes
+</button>
+
+</div>
 
 </div>
 
@@ -1072,7 +1129,7 @@ legendaryCreatures.forEach(card => {
 
 
 /* ==================================================
-   BATTLEFIELD FIELD IDS
+   BATTLEFIELD FIELDS
    ================================================== */
 
 const battlefieldFields = [
@@ -1106,6 +1163,13 @@ const battlefieldFields = [
 
 const STORAGE_KEY =
     "ratadrabikCalculatorBattlefield";
+
+
+/* ==================================================
+   HEARTLESS SUMMONING STATE
+   ================================================== */
+
+let heartlessSummoning = false;
 
 
 /* ==================================================
@@ -1145,6 +1209,44 @@ function getValue(id) {
 
 
 /* ==================================================
+   SET HEARTLESS SUMMONING
+   ================================================== */
+
+function setHeartless(active) {
+
+    heartlessSummoning = active;
+
+
+    const noButton =
+        document.getElementById(
+            "heartless-no"
+        );
+
+
+    const yesButton =
+        document.getElementById(
+            "heartless-yes"
+        );
+
+
+    noButton.classList.toggle(
+        "active",
+        !active
+    );
+
+
+    yesButton.classList.toggle(
+        "active",
+        active
+    );
+
+
+    calculate();
+
+}
+
+
+/* ==================================================
    SAVE BATTLEFIELD
    ================================================== */
 
@@ -1165,6 +1267,10 @@ function saveBattlefield() {
         document.getElementById(
             "throne-type"
         ).value;
+
+
+    saved["heartless-summoning"] =
+        heartlessSummoning;
 
 
     localStorage.setItem(
@@ -1227,6 +1333,22 @@ function loadBattlefield() {
                 "throne-type"
             ).value =
                 saved["throne-type"];
+
+        }
+
+
+        if (
+            saved[
+                "heartless-summoning"
+            ] !== undefined
+        ) {
+
+            heartlessSummoning =
+                Boolean(
+                    saved[
+                        "heartless-summoning"
+                    ]
+                );
 
         }
 
@@ -1296,23 +1418,6 @@ function totalDeaths() {
         (total, count) =>
             total + count,
         0
-    );
-
-}
-
-
-/* ==================================================
-   DEATH ID
-   ================================================== */
-
-function getDeathId(card) {
-
-    return (
-        "death-" +
-        card.replace(
-            /[^a-zA-Z0-9]/g,
-            "-"
-        )
     );
 
 }
@@ -1619,6 +1724,55 @@ function filterDeaths() {
 
 
 /* ==================================================
+   RATADRABIK CURRENT POWER
+   ================================================== */
+
+function ratadrabikCurrentPower() {
+
+    const basePower = 3;
+
+
+    if (heartlessSummoning) {
+
+        return basePower - 1;
+
+    }
+
+
+    return basePower;
+
+}
+
+
+/* ==================================================
+   DELNEY APPLIES
+   ================================================== */
+
+function delneyAppliesToRatadrabik() {
+
+    const delney =
+        totalCopies(
+            "delney"
+        );
+
+
+    if (
+        delney <= 0
+    ) {
+
+        return false;
+
+    }
+
+
+    return (
+        ratadrabikCurrentPower() <= 2
+    );
+
+}
+
+
+/* ==================================================
    RATADRABIK TRIGGERS
    ================================================== */
 
@@ -1641,6 +1795,7 @@ function calculateRatadrabikTriggers() {
             drivnod: 0,
             gandalf: 0,
             throne: 0,
+            delney: 0,
             total: 0
 
         };
@@ -1667,6 +1822,12 @@ function calculateRatadrabikTriggers() {
         ratadrabik;
 
 
+    /*
+     * Teysa, Drivnod and Gandalf
+     * each add another copy of
+     * the original Ratadrabik triggers.
+     */
+
     const teysa =
         base *
         totalCopies(
@@ -1687,6 +1848,15 @@ function calculateRatadrabikTriggers() {
             "gandalf"
         );
 
+
+    /*
+     * Roaming Throne applies when
+     * its chosen creature type matches
+     * Ratadrabik.
+     *
+     * Ratadrabik is both a Zombie
+     * and a Wizard.
+     */
 
     const throneType =
         document.getElementById(
@@ -1710,12 +1880,33 @@ function calculateRatadrabikTriggers() {
         0;
 
 
+    /*
+     * Delney applies when Ratadrabik
+     * has power 2 or less.
+     *
+     * Heartless Summoning gives
+     * creatures -1/-1, making
+     * Ratadrabik 2/2.
+     */
+
+    const delney =
+        delneyAppliesToRatadrabik()
+            ?
+        base *
+        totalCopies(
+            "delney"
+        )
+            :
+        0;
+
+
     const total =
         base +
         teysa +
         drivnod +
         gandalf +
-        throne;
+        throne +
+        delney;
 
 
     return {
@@ -1725,6 +1916,7 @@ function calculateRatadrabikTriggers() {
         drivnod,
         gandalf,
         throne,
+        delney,
         total
 
     };
@@ -1823,6 +2015,11 @@ function displayBreakdown(
         [
             "Roaming Throne additional",
             result.throne
+        ],
+
+        [
+            "Delney additional",
+            result.delney
         ]
 
     ];
@@ -2053,10 +2250,6 @@ function calculate() {
         multipliers.final
     );
 
-
-    /*
-     * Save after every battlefield change.
-     */
 
     saveBattlefield();
 
@@ -2294,6 +2487,11 @@ function applyEvent() {
     }
 
 
+    /*
+     * Remove the original permanents
+     * that died.
+     */
+
     Object.keys(
         deathCounts
     ).forEach(card => {
@@ -2318,6 +2516,10 @@ function applyEvent() {
 
     });
 
+
+    /*
+     * Add relevant Zombie copies.
+     */
 
     Object.keys(
         deathCounts
@@ -2362,7 +2564,7 @@ function applyEvent() {
 
 
 /* ==================================================
-   CLEAR DEATHS
+   CLEAR DEATH EVENT
    ================================================== */
 
 function clearDeathEvent() {
@@ -2419,12 +2621,33 @@ function resetBattlefield() {
 
 
     /*
-     * Reset Throne type.
+     * Reset Roaming Throne.
      */
 
     document.getElementById(
         "throne-type"
     ).value = "Zombie";
+
+
+    /*
+     * Reset Heartless Summoning.
+     */
+
+    heartlessSummoning = false;
+
+
+    document.getElementById(
+        "heartless-no"
+    ).classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "heartless-yes"
+    ).classList.remove(
+        "active"
+    );
 
 
     /*
@@ -2448,8 +2671,7 @@ function resetBattlefield() {
 
 
     /*
-     * Clear saved battlefield first,
-     * then immediately save the reset state.
+     * Clear saved state.
      */
 
     localStorage.removeItem(
@@ -2469,6 +2691,20 @@ function resetBattlefield() {
    ================================================== */
 
 loadBattlefield();
+
+document.getElementById(
+    "heartless-no"
+).classList.toggle(
+    "active",
+    !heartlessSummoning
+);
+
+document.getElementById(
+    "heartless-yes"
+).classList.toggle(
+    "active",
+    heartlessSummoning
+);
 
 renderDeathList();
 

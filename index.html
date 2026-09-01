@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ratadrabik Token Calculator</title>
 
 <style>
@@ -439,6 +438,7 @@ Battlefield
 Enter the permanents currently on the battlefield.
 Leave unused fields blank. Token copies are tracked
 separately because Ratadrabik-created copies are Zombies.
+Your battlefield is automatically saved on this device.
 </div>
 
 
@@ -982,8 +982,8 @@ RESET BATTLEFIELD
 
 <div class="info">
 Apply Event removes dead originals and adds the
-resulting Ratadrabik Zombie copies. Reset Battlefield
-clears the entire simulated battlefield and death list.
+resulting Ratadrabik Zombie copies. Your battlefield
+is automatically saved in this browser.
 </div>
 
 </div>
@@ -1072,7 +1072,44 @@ legendaryCreatures.forEach(card => {
 
 
 /* ==================================================
-   SELECT FIELD ON TAP
+   BATTLEFIELD FIELD IDS
+   ================================================== */
+
+const battlefieldFields = [
+
+    "ratadrabik-original",
+    "ratadrabik-token",
+
+    "teysa-original",
+    "teysa-token",
+
+    "drivnod-original",
+    "drivnod-token",
+
+    "gandalf-original",
+    "gandalf-token",
+
+    "throne-original",
+    "throne-token",
+
+    "delney-original",
+    "delney-token",
+
+    "mondrak-original",
+    "mondrak-token",
+
+    "ojer-original",
+    "ojer-token"
+
+];
+
+
+const STORAGE_KEY =
+    "ratadrabikCalculatorBattlefield";
+
+
+/* ==================================================
+   SELECT FIELD
    ================================================== */
 
 function selectField(field) {
@@ -1091,6 +1128,7 @@ function getValue(id) {
     const element =
         document.getElementById(id);
 
+
     if (
         !element ||
         element.value === ""
@@ -1100,7 +1138,107 @@ function getValue(id) {
 
     }
 
+
     return Number(element.value) || 0;
+
+}
+
+
+/* ==================================================
+   SAVE BATTLEFIELD
+   ================================================== */
+
+function saveBattlefield() {
+
+    const saved = {};
+
+
+    battlefieldFields.forEach(id => {
+
+        saved[id] =
+            document.getElementById(id).value;
+
+    });
+
+
+    saved["throne-type"] =
+        document.getElementById(
+            "throne-type"
+        ).value;
+
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(saved)
+    );
+
+}
+
+
+/* ==================================================
+   LOAD BATTLEFIELD
+   ================================================== */
+
+function loadBattlefield() {
+
+    const savedData =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+
+    if (!savedData) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const saved =
+            JSON.parse(savedData);
+
+
+        battlefieldFields.forEach(id => {
+
+            const element =
+                document.getElementById(id);
+
+
+            if (
+                element &&
+                saved[id] !== undefined
+            ) {
+
+                element.value =
+                    saved[id];
+
+            }
+
+        });
+
+
+        if (
+            saved["throne-type"]
+        ) {
+
+            document.getElementById(
+                "throne-type"
+            ).value =
+                saved["throne-type"];
+
+        }
+
+    }
+    catch (error) {
+
+        console.error(
+            "Unable to load saved battlefield.",
+            error
+        );
+
+    }
 
 }
 
@@ -1116,10 +1254,12 @@ function totalCopies(card) {
             card + "-original"
         );
 
+
     const token =
         getValue(
             card + "-token"
         );
+
 
     const total =
         original + token;
@@ -1913,6 +2053,13 @@ function calculate() {
         multipliers.final
     );
 
+
+    /*
+     * Save after every battlefield change.
+     */
+
+    saveBattlefield();
+
 }
 
 
@@ -2253,35 +2400,6 @@ function resetBattlefield() {
     }
 
 
-    const battlefieldFields = [
-
-        "ratadrabik-original",
-        "ratadrabik-token",
-
-        "teysa-original",
-        "teysa-token",
-
-        "drivnod-original",
-        "drivnod-token",
-
-        "gandalf-original",
-        "gandalf-token",
-
-        "throne-original",
-        "throne-token",
-
-        "delney-original",
-        "delney-token",
-
-        "mondrak-original",
-        "mondrak-token",
-
-        "ojer-original",
-        "ojer-token"
-
-    ];
-
-
     battlefieldFields.forEach(id => {
 
         document.getElementById(
@@ -2301,7 +2419,7 @@ function resetBattlefield() {
 
 
     /*
-     * Reset Throne to Zombie.
+     * Reset Throne type.
      */
 
     document.getElementById(
@@ -2310,7 +2428,7 @@ function resetBattlefield() {
 
 
     /*
-     * Clear all deaths.
+     * Clear death event.
      */
 
     legendaryCreatures.forEach(card => {
@@ -2329,6 +2447,16 @@ function resetBattlefield() {
     ).value = "";
 
 
+    /*
+     * Clear saved battlefield first,
+     * then immediately save the reset state.
+     */
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
     renderDeathList();
 
     calculate();
@@ -2339,6 +2467,8 @@ function resetBattlefield() {
 /* ==================================================
    INITIALIZE
    ================================================== */
+
+loadBattlefield();
 
 renderDeathList();
 

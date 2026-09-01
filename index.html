@@ -15,6 +15,10 @@
 
 <style>
 
+/* ==========================================
+   GENERAL
+   ========================================== */
+
 * {
     box-sizing: border-box;
 }
@@ -37,7 +41,7 @@ body {
 
 .container {
 
-    max-width: 700px;
+    max-width: 760px;
     margin: auto;
 }
 
@@ -60,8 +64,11 @@ h1 {
 .card {
 
     background: #1f2937;
+
     border-radius: 12px;
+
     padding: 18px;
+
     margin-bottom: 18px;
 }
 
@@ -69,6 +76,7 @@ h1 {
 h2 {
 
     margin-top: 0;
+
     font-size: 20px;
 }
 
@@ -76,8 +84,11 @@ h2 {
 .description {
 
     color: #9ca3af;
+
     font-size: 14px;
+
     line-height: 1.5;
+
     margin-bottom: 15px;
 }
 
@@ -106,13 +117,17 @@ h2 {
 .battlefield-header {
 
     color: #9ca3af;
+
     font-size: 11px;
+
     text-align: center;
+
     padding-bottom: 6px;
 }
 
 
 .battlefield-header div:first-child {
+
     text-align: left;
 }
 
@@ -129,6 +144,7 @@ h2 {
 .card-name {
 
     font-weight: bold;
+
     font-size: 14px;
 }
 
@@ -140,6 +156,7 @@ h2 {
     padding: 7px;
 
     background: #111827;
+
     color: white;
 
     border:
@@ -185,6 +202,7 @@ h2 {
 .toggle {
 
     width: 55px;
+
     height: 30px;
 
     border-radius: 20px;
@@ -200,7 +218,23 @@ h2 {
 
 
 .toggle.active {
+
     background: #166534;
+}
+
+
+select {
+
+    background: #111827;
+
+    color: white;
+
+    border:
+        1px solid #4b5563;
+
+    border-radius: 6px;
+
+    padding: 7px;
 }
 
 
@@ -217,6 +251,7 @@ h2 {
     margin-bottom: 12px;
 
     background: #111827;
+
     color: white;
 
     border:
@@ -264,6 +299,7 @@ h2 {
 
 
 .death-name {
+
     font-size: 14px;
 }
 
@@ -285,6 +321,7 @@ h2 {
     border-radius: 7px;
 
     width: 38px;
+
     height: 36px;
 
     font-size: 20px;
@@ -296,11 +333,13 @@ h2 {
 
 
 .minus {
+
     background: #374151;
 }
 
 
 .plus {
+
     background: #4b5563;
 }
 
@@ -355,6 +394,97 @@ h2 {
     font-weight: bold;
 
     padding-top: 10px;
+}
+
+
+/* ==========================================
+   TRIGGER SOURCE CARDS
+   ========================================== */
+
+.trigger-source {
+
+    background: #111827;
+
+    border:
+        1px solid #374151;
+
+    border-radius: 9px;
+
+    padding: 12px;
+
+    margin-top: 12px;
+}
+
+
+.trigger-source-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+}
+
+
+.trigger-source-name {
+
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+
+.trigger-source-count {
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+
+.trigger-detail {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #d1d5db;
+
+    font-size: 13px;
+
+    padding:
+        4px 0;
+}
+
+
+.trigger-total {
+
+    border-top:
+        1px solid #4b5563;
+
+    margin-top: 6px;
+
+    padding-top: 7px;
+
+    font-weight: bold;
+}
+
+
+.zombie-label {
+
+    color: #86efac;
+
+    font-size: 12px;
+}
+
+
+.non-zombie-label {
+
+    color: #fca5a5;
+
+    font-size: 12px;
 }
 
 
@@ -476,11 +606,13 @@ h2 {
 @media (max-width: 500px) {
 
     body {
+
         padding: 8px;
     }
 
 
     .card {
+
         padding: 14px;
     }
 
@@ -497,6 +629,7 @@ h2 {
 
 
     .number-input {
+
         width: 48px;
     }
 
@@ -826,7 +959,7 @@ class="total-number"
 
 
 
-<!-- OJER TAQ -->
+<!-- OJER -->
 
 <div class="battlefield-row">
 
@@ -862,12 +995,197 @@ class="total-number"
 </div>
 
 
+
+<!-- ATHREOS -->
+
+<div class="battlefield-row">
+
+<div class="card-name">
+Athreos, God of Passage
+</div>
+
+<input
+id="athreos-original"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<input
+id="athreos-token"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<div
+id="athreos-total"
+class="total-number"
+>
+0
+</div>
+
+</div>
+
+
+
+<!-- ELAS -->
+
+<div class="battlefield-row">
+
+<div class="card-name">
+Elas il-Kor, Sadistic Pilgrim
+</div>
+
+<input
+id="elas-original"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<input
+id="elas-token"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<div
+id="elas-total"
+class="total-number"
+>
+0
+</div>
+
+</div>
+
+
+
+<!-- KOKUSHO -->
+
+<div class="battlefield-row">
+
+<div class="card-name">
+Kokusho, the Evening Star
+</div>
+
+<input
+id="kokusho-original"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<input
+id="kokusho-token"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<div
+id="kokusho-total"
+class="total-number"
+>
+0
+</div>
+
+</div>
+
+
+
+<!-- VRAAN -->
+
+<div class="battlefield-row">
+
+<div class="card-name">
+Vraan, Executioner Thane
+</div>
+
+<input
+id="vraan-original"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<input
+id="vraan-token"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<div
+id="vraan-total"
+class="total-number"
+>
+0
+</div>
+
+</div>
+
+
+
+<!-- AO -->
+
+<div class="battlefield-row">
+
+<div class="card-name">
+Ao, the Dawn Sky
+</div>
+
+<input
+id="ao-original"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<input
+id="ao-token"
+class="number-input"
+type="number"
+min="0"
+value="0"
+onchange="calculate()"
+>
+
+<div
+id="ao-total"
+class="total-number"
+>
+0
+</div>
+
+</div>
+
+
 </div>
 
 
 
 <!-- ==========================================
-     BATTLEFIELD EFFECTS
+     EFFECTS
      ========================================== -->
 
 <div class="card">
@@ -881,24 +1199,6 @@ Battlefield Effects
 <div class="effect-row">
 
 <span>
-Heartless Summoning
-</span>
-
-
-<button
-id="heartless-button"
-class="toggle"
-onclick="toggleHeartless()"
->
-OFF
-</button>
-
-</div>
-
-
-<div class="effect-row">
-
-<span>
 Roaming Throne Type
 </span>
 
@@ -906,17 +1206,14 @@ Roaming Throne Type
 <select
 id="throne-type"
 onchange="calculate()"
-style="
-background:#111827;
-color:white;
-border:1px solid #4b5563;
-border-radius:6px;
-padding:7px;
-"
 >
 
 <option value="Zombie">
 Zombie
+</option>
+
+<option value="Wizard">
+Wizard
 </option>
 
 <option value="Other">
@@ -924,6 +1221,24 @@ Other
 </option>
 
 </select>
+
+</div>
+
+
+<div class="effect-row">
+
+<span>
+Vraan already triggered this turn
+</span>
+
+
+<button
+id="vraan-button"
+class="toggle"
+onclick="toggleVraan()"
+>
+NO
+</button>
 
 </div>
 
@@ -947,7 +1262,7 @@ What Died?
 <div class="description">
 
 Select the legendary creatures that died during
-this event.
+this event. Multiple creatures can die simultaneously.
 
 </div>
 
@@ -973,7 +1288,7 @@ class="death-list"
 
 
 <!-- ==========================================
-     TRIGGER RESULTS
+     RATADRABIK TRIGGERS
      ========================================== -->
 
 <div class="card">
@@ -985,103 +1300,16 @@ RATADRABIK TRIGGERS
 
 
 <div
-id="triggerResult"
+id="ratadrabikResult"
 class="result"
 >
 0
 </div>
 
 
-<div class="breakdown-row">
-
-<span>
-Base Ratadrabik triggers
-</span>
-
-<span id="baseTriggers">
-0
-</span>
-
-</div>
-
-
-<div class="breakdown-row">
-
-<span>
-Teysa additional
-</span>
-
-<span id="teysaBonus">
-0
-</span>
-
-</div>
-
-
-<div class="breakdown-row">
-
-<span>
-Drivnod additional
-</span>
-
-<span id="drivnodBonus">
-0
-</span>
-
-</div>
-
-
-<div class="breakdown-row">
-
-<span>
-Gandalf additional
-</span>
-
-<span id="gandalfBonus">
-0
-</span>
-
-</div>
-
-
-<div class="breakdown-row">
-
-<span>
-Roaming Throne additional
-</span>
-
-<span id="throneBonus">
-0
-</span>
-
-</div>
-
-
-<div class="breakdown-row">
-
-<span>
-Delney additional
-</span>
-
-<span id="delneyBonus">
-0
-</span>
-
-</div>
-
-
 <div
-class="breakdown-row breakdown-total"
+id="ratadrabikBreakdown"
 >
-
-<span>
-Total Ratadrabik triggers
-</span>
-
-<span id="totalTriggers">
-0
-</span>
-
 </div>
 
 
@@ -1090,7 +1318,39 @@ Total Ratadrabik triggers
 
 
 <!-- ==========================================
-     TOKEN RESULTS
+     OTHER DEATH TRIGGERS
+     ========================================== -->
+
+<div class="card">
+
+
+<h2>
+Other Triggered Abilities
+</h2>
+
+
+<div class="description">
+
+These are triggered abilities from your battlefield
+that are caused by the selected death event. The
+calculator tracks the source of each ability so
+Roaming Throne can be applied correctly.
+
+</div>
+
+
+<div
+id="otherTriggers"
+>
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================================
+     TOKEN CALCULATION
      ========================================== -->
 
 <div class="card">
@@ -1104,7 +1364,7 @@ TOKEN CALCULATION
 <div class="breakdown-row">
 
 <span>
-Base tokens
+Base Ratadrabik token events
 </span>
 
 <strong
@@ -1197,9 +1457,8 @@ CLEAR DEATH EVENT
 
 <div class="info">
 
-Ratadrabik creates Zombie token copies of the
-legendary creatures that died. Token replacement
-effects are calculated separately.
+Ratadrabik's token count is calculated separately
+from other death-triggered abilities.
 
 </div>
 
@@ -1215,7 +1474,7 @@ effects are calculated separately.
 
 
 /* ==================================================
-   LEGENDARY CREATURES
+   LEGENDARY CREATURE LIST
    ================================================== */
 
 const legendaryCreatures = [
@@ -1300,30 +1559,30 @@ card => {
 
 
 /* ==================================================
-   HEARTLESS SUMMONING
+   VRAAN STATE
    ================================================== */
 
-let heartlessSummoning = false;
+let vraanAlreadyTriggered = false;
 
 
-function toggleHeartless() {
+function toggleVraan() {
 
-    heartlessSummoning =
-        !heartlessSummoning;
+    vraanAlreadyTriggered =
+        !vraanAlreadyTriggered;
 
 
     const button =
         document.getElementById(
-            "heartless-button"
+            "vraan-button"
         );
 
 
     if (
-        heartlessSummoning
+        vraanAlreadyTriggered
     ) {
 
         button.textContent =
-            "ON";
+            "YES";
 
         button.classList.add(
             "active"
@@ -1334,13 +1593,16 @@ function toggleHeartless() {
     else {
 
         button.textContent =
-            "OFF";
+            "NO";
 
         button.classList.remove(
             "active"
         );
 
     }
+
+
+    calculate();
 
 }
 
@@ -1564,7 +1826,7 @@ function filterDeaths() {
 
 
 /* ==================================================
-   GET NUMBER
+   GET VALUE
    ================================================== */
 
 function getValue(id) {
@@ -1639,6 +1901,947 @@ function totalDeaths() {
 
 
 /* ==================================================
+   GET DEATH COUNT
+   ================================================== */
+
+function deathsOf(card) {
+
+    return (
+        deathCounts[card] || 0
+    );
+
+}
+
+
+
+/* ==================================================
+   GET TRIGGER MODIFIERS
+   ================================================== */
+
+function getTriggerModifiers() {
+
+    return {
+
+        teysa:
+            totalCopies(
+                "teysa"
+            ),
+
+        drivnod:
+            totalCopies(
+                "drivnod"
+            ),
+
+        gandalf:
+            totalCopies(
+                "gandalf"
+            ),
+
+        throne:
+            totalCopies(
+                "throne"
+            )
+
+    };
+
+}
+
+
+
+/* ==================================================
+   ROAMING THRONE APPLIES TO SOURCE
+   ================================================== */
+
+function throneAppliesToSource(
+source,
+sourceToken
+) {
+
+    const type =
+        document.getElementById(
+            "throne-type"
+        ).value;
+
+
+    if (
+        type === "Other"
+    ) {
+
+        return false;
+
+    }
+
+
+    /*
+     * Ratadrabik is both a Zombie and Wizard.
+     */
+
+    if (
+        source ===
+        "Ratadrabik of Urborg"
+    ) {
+
+        return (
+            type === "Zombie" ||
+            type === "Wizard"
+        );
+
+    }
+
+
+    /*
+     * Ratadrabik-created copies are Zombies.
+     */
+
+    if (
+        sourceToken
+    ) {
+
+        return (
+            type === "Zombie"
+        );
+
+    }
+
+
+    /*
+     * Original copies of the relevant cards
+     * are not Zombies.
+     *
+     * Gandalf is a Wizard.
+     */
+
+    if (
+        source ===
+        "Gandalf the White"
+    ) {
+
+        return (
+            type === "Wizard"
+        );
+
+    }
+
+
+    return false;
+
+}
+
+
+
+/* ==================================================
+   TRIGGER MULTIPLIER
+   ================================================== */
+
+function triggerMultiplier(
+source,
+sourceToken
+) {
+
+    const modifiers =
+        getTriggerModifiers();
+
+
+    let multiplier = 1;
+
+
+    /*
+     * Teysa
+     *
+     * Death causes the triggered ability
+     * to trigger an additional time.
+     */
+
+    multiplier +=
+        modifiers.teysa;
+
+
+    /*
+     * Drivnod
+     */
+
+    multiplier +=
+        modifiers.drivnod;
+
+
+    /*
+     * Gandalf the White
+     *
+     * Our current death event contains
+     * legendary permanents, so Gandalf applies.
+     */
+
+    multiplier +=
+        modifiers.gandalf;
+
+
+    /*
+     * Roaming Throne
+     */
+
+    if (
+        throneAppliesToSource(
+            source,
+            sourceToken
+        )
+    ) {
+
+        multiplier +=
+            modifiers.throne;
+
+    }
+
+
+    return multiplier;
+
+}
+
+
+
+/* ==================================================
+   CALCULATE RATADRABIK
+   ================================================== */
+
+function calculateRatadrabikTriggers() {
+
+    const ratadrabikOriginal =
+        getValue(
+            "ratadrabik-original"
+        );
+
+
+    const ratadrabikToken =
+        getValue(
+            "ratadrabik-token"
+        );
+
+
+    const ratadrabikTotal =
+        ratadrabikOriginal +
+        ratadrabikToken;
+
+
+    /*
+     * Ratadrabik only cares about another
+     * legendary creature.
+     *
+     * A Ratadrabik token created by Ratadrabik
+     * is NOT legendary.
+     */
+
+    const legendaryDeaths =
+        totalDeaths();
+
+
+    const ratadrabikDeaths =
+        deathsOf(
+            "Ratadrabik of Urborg"
+        );
+
+
+    const qualifyingDeaths =
+        Math.max(
+            0,
+            legendaryDeaths -
+            ratadrabikDeaths
+        );
+
+
+    /*
+     * Every Ratadrabik on the battlefield
+     * has the death trigger.
+     */
+
+    const base =
+        qualifyingDeaths *
+        ratadrabikTotal;
+
+
+    /*
+     * Ratadrabik is always a Zombie, so
+     * Zombie-naming Roaming Throne applies
+     * regardless of whether Ratadrabik is an
+     * original or token copy.
+     */
+
+    const multiplier =
+        triggerMultiplier(
+            "Ratadrabik of Urborg",
+            true
+        );
+
+
+    const total =
+        base *
+        multiplier;
+
+
+    return {
+
+        base:
+            base,
+
+        multiplier:
+            multiplier,
+
+        total:
+            total
+
+    };
+
+}
+
+
+
+/* ==================================================
+   DISPLAY RATADRABIK BREAKDOWN
+   ================================================== */
+
+function displayRatadrabikBreakdown(
+result
+) {
+
+    const container =
+        document.getElementById(
+            "ratadrabikBreakdown"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (
+        result.base === 0
+    ) {
+
+        return;
+
+    }
+
+
+    const modifiers =
+        getTriggerModifiers();
+
+
+    const rows = [
+
+        [
+            "Base Ratadrabik triggers",
+            result.base
+        ],
+
+        [
+            "Teysa additional",
+            result.base *
+            modifiers.teysa
+        ],
+
+        [
+            "Drivnod additional",
+            result.base *
+            modifiers.drivnod
+        ],
+
+        [
+            "Gandalf additional",
+            result.base *
+            modifiers.gandalf
+        ],
+
+        [
+            "Roaming Throne additional",
+            result.base *
+            modifiers.throne
+        ]
+
+    ];
+
+
+    rows.forEach(
+    rowData => {
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "breakdown-row";
+
+
+        row.innerHTML =
+
+            `<span>
+                ${rowData[0]}
+            </span>
+
+            <strong>
+                ${rowData[1]}
+            </strong>`;
+
+
+        container.appendChild(
+            row
+        );
+
+    }
+    );
+
+
+
+    const total =
+        document.createElement(
+            "div"
+        );
+
+
+    total.className =
+        "breakdown-row breakdown-total";
+
+
+    total.innerHTML =
+
+        `<span>
+            Total
+        </span>
+
+        <strong>
+            ${result.total}
+        </strong>`;
+
+
+    container.appendChild(
+        total
+    );
+
+}
+
+
+
+/* ==================================================
+   DEATH TRIGGER SOURCE DEFINITIONS
+   ================================================== */
+
+const deathTriggerSources = [
+
+    {
+
+        name:
+            "Athreos, God of Passage",
+
+        field:
+            "athreos",
+
+        condition:
+            "other creature dies",
+
+        count:
+            function() {
+
+                const sourceDeaths =
+                    deathsOf(
+                        "Athreos, God of Passage"
+                    );
+
+                return Math.max(
+                    0,
+                    totalDeaths() -
+                    sourceDeaths
+                );
+
+            }
+
+    },
+
+
+    {
+
+        name:
+            "Elas il-Kor, Sadistic Pilgrim",
+
+        field:
+            "elas",
+
+        condition:
+            "other creature you control dies",
+
+        count:
+            function() {
+
+                const sourceDeaths =
+                    deathsOf(
+                        "Elas il-Kor, Sadistic Pilgrim"
+                    );
+
+                return Math.max(
+                    0,
+                    totalDeaths() -
+                    sourceDeaths
+                );
+
+            }
+
+    },
+
+
+    {
+
+        name:
+            "Kokusho, the Evening Star",
+
+        field:
+            "kokusho",
+
+        condition:
+            "Kokusho dies",
+
+        count:
+            function() {
+
+                return deathsOf(
+                    "Kokusho, the Evening Star"
+                );
+
+            }
+
+    },
+
+
+    {
+
+        name:
+            "Ao, the Dawn Sky",
+
+        field:
+            "ao",
+
+        condition:
+            "Ao dies",
+
+        count:
+            function() {
+
+                return deathsOf(
+                    "Ao, the Dawn Sky"
+                );
+
+            }
+
+    },
+
+
+    {
+
+        name:
+            "Vraan, Executioner Thane",
+
+        field:
+            "vraan",
+
+        condition:
+            "one or more other creatures you control die",
+
+        count:
+            function() {
+
+                if (
+                    vraanAlreadyTriggered
+                ) {
+
+                    return 0;
+
+                }
+
+
+                const sourceDeaths =
+                    deathsOf(
+                        "Vraan, Executioner Thane"
+                    );
+
+
+                return (
+                    totalDeaths() -
+                    sourceDeaths
+                ) > 0
+                    ? 1
+                    : 0;
+
+            }
+
+    }
+
+];
+
+
+
+/* ==================================================
+   DISPLAY OTHER TRIGGERS
+   ================================================== */
+
+function displayOtherTriggers() {
+
+    const container =
+        document.getElementById(
+            "otherTriggers"
+        );
+
+
+    container.innerHTML = "";
+
+
+    deathTriggerSources.forEach(
+    source => {
+
+
+        const original =
+            getValue(
+                source.field +
+                "-original"
+            );
+
+
+        const token =
+            getValue(
+                source.field +
+                "-token"
+            );
+
+
+        const total =
+            original +
+            token;
+
+
+        const baseEvents =
+            source.count();
+
+
+        if (
+            total === 0 ||
+            baseEvents === 0
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * Original source and token source
+         * are displayed separately because
+         * token copies are Zombies.
+         */
+
+        if (
+            original > 0
+        ) {
+
+            createTriggerSourceCard(
+                container,
+                source.name,
+                "Original",
+                false,
+                baseEvents
+            );
+
+        }
+
+
+        if (
+            token > 0
+        ) {
+
+            createTriggerSourceCard(
+                container,
+                source.name,
+                "Ratadrabik Token",
+                true,
+                baseEvents
+            );
+
+        }
+
+    }
+    );
+
+
+    if (
+        container.children.length === 0
+    ) {
+
+        container.innerHTML =
+
+            `<div class="info">
+                No other tracked death-triggered
+                abilities are active for this event.
+            </div>`;
+
+    }
+
+}
+
+
+
+/* ==================================================
+   CREATE TRIGGER SOURCE CARD
+   ================================================== */
+
+function createTriggerSourceCard(
+container,
+name,
+label,
+isToken,
+baseEvents
+) {
+
+
+    const multiplier =
+        triggerMultiplier(
+            name,
+            isToken
+        );
+
+
+    const finalTriggers =
+        baseEvents *
+        multiplier;
+
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "trigger-source";
+
+
+    const header =
+        document.createElement(
+            "div"
+        );
+
+
+    header.className =
+        "trigger-source-header";
+
+
+    const sourceName =
+        document.createElement(
+            "div"
+        );
+
+
+    sourceName.className =
+        "trigger-source-name";
+
+
+    sourceName.textContent =
+        name +
+        " — " +
+        label;
+
+
+    const sourceCount =
+        document.createElement(
+            "div"
+        );
+
+
+    sourceCount.className =
+        "trigger-source-count";
+
+
+    sourceCount.textContent =
+        finalTriggers;
+
+
+    header.appendChild(
+        sourceName
+    );
+
+
+    header.appendChild(
+        sourceCount
+    );
+
+
+    card.appendChild(
+        header
+    );
+
+
+
+    const typeLabel =
+        document.createElement(
+            "div"
+        );
+
+
+    typeLabel.className =
+        isToken
+            ? "zombie-label"
+            : "non-zombie-label";
+
+
+    typeLabel.textContent =
+        isToken
+            ? "Zombie source"
+            : "Original source";
+
+
+    card.appendChild(
+        typeLabel
+    );
+
+
+
+    const baseRow =
+        document.createElement(
+            "div"
+        );
+
+
+    baseRow.className =
+        "trigger-detail";
+
+
+    baseRow.innerHTML =
+
+        `<span>
+            Base trigger events
+        </span>
+
+        <strong>
+            ${baseEvents}
+        </strong>`;
+
+
+    card.appendChild(
+        baseRow
+    );
+
+
+
+    const modifiers =
+        getTriggerModifiers();
+
+
+    const modifierRows = [
+
+        [
+            "Teysa additional",
+            baseEvents *
+            modifiers.teysa
+        ],
+
+        [
+            "Drivnod additional",
+            baseEvents *
+            modifiers.drivnod
+        ],
+
+        [
+            "Gandalf additional",
+            baseEvents *
+            modifiers.gandalf
+        ]
+
+    ];
+
+
+    if (
+        throneAppliesToSource(
+            name,
+            isToken
+        )
+    ) {
+
+        modifierRows.push(
+
+            [
+                "Roaming Throne additional",
+                baseEvents *
+                modifiers.throne
+            ]
+
+        );
+
+    }
+
+
+    modifierRows.forEach(
+    rowData => {
+
+
+        const row =
+            document.createElement(
+                "div"
+            );
+
+
+        row.className =
+            "trigger-detail";
+
+
+        row.innerHTML =
+
+            `<span>
+                ${rowData[0]}
+            </span>
+
+            <strong>
+                +${rowData[1]}
+            </strong>`;
+
+
+        card.appendChild(
+            row
+        );
+
+    }
+    );
+
+
+
+    const totalRow =
+        document.createElement(
+            "div"
+        );
+
+
+    totalRow.className =
+        "trigger-detail trigger-total";
+
+
+    totalRow.innerHTML =
+
+        `<span>
+            Total triggers
+        </span>
+
+        <strong>
+            ${finalTriggers}
+        </strong>`;
+
+
+    card.appendChild(
+        totalRow
+    );
+
+
+    container.appendChild(
+        card
+    );
+
+}
+
+
+
+/* ==================================================
    TOKEN MULTIPLIERS
    ================================================== */
 
@@ -1694,327 +2897,11 @@ function calculateTokenMultiplier() {
 
 
 /* ==================================================
-   MAIN CALCULATION
-   ================================================== */
-
-function calculate() {
-
-
-    /* ------------------------------------------
-       BATTLEFIELD
-       ------------------------------------------ */
-
-    const ratadrabik =
-        totalCopies(
-            "ratadrabik"
-        );
-
-
-    const teysaOriginal =
-        getValue(
-            "teysa-original"
-        );
-
-
-    const teysaToken =
-        getValue(
-            "teysa-token"
-        );
-
-
-    const drivnodOriginal =
-        getValue(
-            "drivnod-original"
-        );
-
-
-    const drivnodToken =
-        getValue(
-            "drivnod-token"
-        );
-
-
-    const gandalfOriginal =
-        getValue(
-            "gandalf-original"
-        );
-
-
-    const gandalfToken =
-        getValue(
-            "gandalf-token"
-        );
-
-
-    const throne =
-        totalCopies(
-            "throne"
-        );
-
-
-    totalCopies(
-        "delney"
-    );
-
-
-
-    /* ------------------------------------------
-       DEATH EVENT
-       ------------------------------------------ */
-
-    const deaths =
-        totalDeaths();
-
-
-
-    /* ------------------------------------------
-       BASE RATADRABIK TRIGGERS
-       ------------------------------------------ */
-
-    const baseTriggers =
-        ratadrabik > 0
-            ? deaths
-            : 0;
-
-
-
-    /* ------------------------------------------
-       TEYSA
-       ------------------------------------------ */
-
-    const teysaBonus =
-
-        deaths *
-        (
-            teysaOriginal +
-            teysaToken
-        );
-
-
-
-    /* ------------------------------------------
-       DRIVNOD
-       ------------------------------------------ */
-
-    const drivnodBonus =
-
-        deaths *
-        (
-            drivnodOriginal +
-            drivnodToken
-        );
-
-
-
-    /* ------------------------------------------
-       GANDALF
-       ------------------------------------------ */
-
-    const gandalfBonus =
-
-        deaths *
-        (
-            gandalfOriginal +
-            gandalfToken
-        );
-
-
-
-    /* ------------------------------------------
-       ROAMING THRONE
-       ------------------------------------------ */
-
-    /*
-     * A Ratadrabik token is a Zombie.
-     *
-     * For the current engine, Throne is only
-     * applied to relevant Zombie token copies.
-     *
-     * We are deliberately keeping this separate
-     * so the recursive trigger interaction can
-     * be modeled precisely in the next engine
-     * revision.
-     */
-
-    const throneType =
-        document.getElementById(
-            "throne-type"
-        ).value;
-
-
-    let throneBonus = 0;
-
-
-    if (
-        throneType === "Zombie"
-    ) {
-
-        throneBonus =
-
-            deaths *
-            (
-                teysaToken +
-                drivnodToken +
-                gandalfToken
-            );
-
-    }
-
-
-
-    /* ------------------------------------------
-       DELNEY
-       ------------------------------------------ */
-
-    const delneyBonus =
-        0;
-
-
-
-    /* ------------------------------------------
-       TOTAL TRIGGERS
-       ------------------------------------------ */
-
-    const totalTriggers =
-
-        baseTriggers +
-
-        teysaBonus +
-
-        drivnodBonus +
-
-        gandalfBonus +
-
-        throneBonus +
-
-        delneyBonus;
-
-
-
-    /* ------------------------------------------
-       TOKEN MULTIPLIERS
-       ------------------------------------------ */
-
-    const multipliers =
-        calculateTokenMultiplier();
-
-
-    const baseTokens =
-        totalTriggers;
-
-
-    const actualTokens =
-        baseTokens *
-        multipliers.final;
-
-
-
-    /* ------------------------------------------
-       DISPLAY TRIGGERS
-       ------------------------------------------ */
-
-    document.getElementById(
-        "baseTriggers"
-    ).textContent =
-        baseTriggers;
-
-
-    document.getElementById(
-        "teysaBonus"
-    ).textContent =
-        teysaBonus;
-
-
-    document.getElementById(
-        "drivnodBonus"
-    ).textContent =
-        drivnodBonus;
-
-
-    document.getElementById(
-        "gandalfBonus"
-    ).textContent =
-        gandalfBonus;
-
-
-    document.getElementById(
-        "throneBonus"
-    ).textContent =
-        throneBonus;
-
-
-    document.getElementById(
-        "delneyBonus"
-    ).textContent =
-        delneyBonus;
-
-
-    document.getElementById(
-        "triggerResult"
-    ).textContent =
-        totalTriggers;
-
-
-    document.getElementById(
-        "totalTriggers"
-    ).textContent =
-        totalTriggers;
-
-
-
-    /* ------------------------------------------
-       DISPLAY TOKEN CALCULATION
-       ------------------------------------------ */
-
-    document.getElementById(
-        "baseTokens"
-    ).textContent =
-        baseTokens;
-
-
-    document.getElementById(
-        "mondrakMultiplier"
-    ).textContent =
-        "×" +
-        multipliers.mondrak;
-
-
-    document.getElementById(
-        "ojerMultiplier"
-    ).textContent =
-        "×" +
-        multipliers.ojer;
-
-
-    document.getElementById(
-        "finalMultiplier"
-    ).textContent =
-        "×" +
-        multipliers.final;
-
-
-    document.getElementById(
-        "tokenResult"
-    ).textContent =
-        actualTokens;
-
-
-
-    updateTokenOutput(
-        totalTriggers,
-        multipliers.final
-    );
-
-}
-
-
-
-/* ==================================================
    TOKEN OUTPUT
    ================================================== */
 
 function updateTokenOutput(
-totalTriggers,
+ratadrabikTriggers,
 tokenMultiplier
 ) {
 
@@ -2033,7 +2920,8 @@ tokenMultiplier
 
 
     if (
-        deaths === 0
+        deaths === 0 ||
+        ratadrabikTriggers === 0
     ) {
 
         return;
@@ -2059,16 +2947,34 @@ tokenMultiplier
 
 
         /*
-         * Each creature receives the number
-         * of triggers associated with it.
+         * Ratadrabik does not trigger for
+         * Ratadrabik itself.
+         */
+
+        if (
+            card ===
+            "Ratadrabik of Urborg"
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * Every qualifying legendary death
+         * receives the appropriate number of
+         * Ratadrabik trigger resolutions.
          */
 
         const creatureTriggers =
 
-            died *
+            ratadrabikTriggers /
             (
-                totalTriggers /
-                deaths
+                deaths -
+                deathsOf(
+                    "Ratadrabik of Urborg"
+                )
             );
 
 
@@ -2104,6 +3010,158 @@ tokenMultiplier
         );
 
     }
+    );
+
+}
+
+
+
+/* ==================================================
+   MAIN CALCULATION
+   ================================================== */
+
+function calculate() {
+
+
+    /* ------------------------------------------
+       UPDATE BATTLEFIELD COUNTS
+       ------------------------------------------ */
+
+    totalCopies(
+        "ratadrabik"
+    );
+
+    totalCopies(
+        "teysa"
+    );
+
+    totalCopies(
+        "drivnod"
+    );
+
+    totalCopies(
+        "gandalf"
+    );
+
+    totalCopies(
+        "throne"
+    );
+
+    totalCopies(
+        "delney"
+    );
+
+    totalCopies(
+        "mondrak"
+    );
+
+    totalCopies(
+        "ojer"
+    );
+
+    totalCopies(
+        "athreos"
+    );
+
+    totalCopies(
+        "elas"
+    );
+
+    totalCopies(
+        "kokusho"
+    );
+
+    totalCopies(
+        "vraan"
+    );
+
+    totalCopies(
+        "ao"
+    );
+
+
+
+    /* ------------------------------------------
+       RATADRABIK
+       ------------------------------------------ */
+
+    const ratadrabikResult =
+        calculateRatadrabikTriggers();
+
+
+    document.getElementById(
+        "ratadrabikResult"
+    ).textContent =
+        ratadrabikResult.total;
+
+
+    displayRatadrabikBreakdown(
+        ratadrabikResult
+    );
+
+
+
+    /* ------------------------------------------
+       OTHER TRIGGERS
+       ------------------------------------------ */
+
+    displayOtherTriggers();
+
+
+
+    /* ------------------------------------------
+       TOKEN REPLACEMENT
+       ------------------------------------------ */
+
+    const multipliers =
+        calculateTokenMultiplier();
+
+
+    const baseTokens =
+        ratadrabikResult.total;
+
+
+    const actualTokens =
+        baseTokens *
+        multipliers.final;
+
+
+    document.getElementById(
+        "baseTokens"
+    ).textContent =
+        baseTokens;
+
+
+    document.getElementById(
+        "mondrakMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.mondrak;
+
+
+    document.getElementById(
+        "ojerMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.ojer;
+
+
+    document.getElementById(
+        "finalMultiplier"
+    ).textContent =
+        "×" +
+        multipliers.final;
+
+
+    document.getElementById(
+        "tokenResult"
+    ).textContent =
+        actualTokens;
+
+
+    updateTokenOutput(
+        ratadrabikResult.total,
+        multipliers.final
     );
 
 }
@@ -2153,16 +3211,30 @@ function applyEvent() {
     }
 
 
-    const totalTriggers =
-        Number(
-            document.getElementById(
-                "totalTriggers"
-            ).textContent
-        );
+    const result =
+        calculateRatadrabikTriggers();
 
 
     const multipliers =
         calculateTokenMultiplier();
+
+
+    const qualifyingDeaths =
+        deaths -
+        deathsOf(
+            "Ratadrabik of Urborg"
+        );
+
+
+    if (
+        qualifyingDeaths <= 0
+    ) {
+
+        clearDeathEvent();
+
+        return;
+
+    }
 
 
 
@@ -2200,7 +3272,7 @@ function applyEvent() {
 
 
     /* ------------------------------------------
-       ADD CREATED TOKENS
+       ADD RATADRABIK TOKENS
        ------------------------------------------ */
 
     Object.keys(
@@ -2214,7 +3286,9 @@ function applyEvent() {
 
 
         if (
-            died <= 0
+            died <= 0 ||
+            card ===
+            "Ratadrabik of Urborg"
         ) {
 
             return;
@@ -2222,34 +3296,25 @@ function applyEvent() {
         }
 
 
-        const creatureTriggers =
+        const tokenCount =
 
-            died *
             (
-                totalTriggers /
-                deaths
-            );
-
-
-        const actualTokens =
-
-            creatureTriggers *
+                result.total /
+                qualifyingDeaths
+            ) *
+            died *
             multipliers.final;
 
 
         addTokenCopies(
             card,
-            actualTokens
+            tokenCount
         );
 
     }
     );
 
 
-
-    /* ------------------------------------------
-       CLEAR EVENT
-       ------------------------------------------ */
 
     clearDeathEvent();
 
@@ -2262,6 +3327,9 @@ function applyEvent() {
    ================================================== */
 
 const battlefieldMap = {
+
+    "Ratadrabik of Urborg":
+        "ratadrabik",
 
     "Teysa Karlov":
         "teysa",
@@ -2282,7 +3350,22 @@ const battlefieldMap = {
         "mondrak",
 
     "Ojer Taq, Deepest Foundation":
-        "ojer"
+        "ojer",
+
+    "Athreos, God of Passage":
+        "athreos",
+
+    "Elas il-Kor, Sadistic Pilgrim":
+        "elas",
+
+    "Kokusho, the Evening Star":
+        "kokusho",
+
+    "Vraan, Executioner Thane":
+        "vraan",
+
+    "Ao, the Dawn Sky":
+        "ao"
 
 };
 
@@ -2394,6 +3477,7 @@ function clearDeathEvent() {
 
 
     renderDeathList();
+
 
     calculate();
 
